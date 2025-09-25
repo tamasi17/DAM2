@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/AccesoDatos/AccesoDatos.iml" filepath="$PROJECT_DIR$/AccesoDatos/AccesoDatos.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AplicacionesMoviles/AplicacionesMoviles.iml" filepath="$PROJECT_DIR$/AplicacionesMoviles/AplicacionesMoviles.iml" />
       <module fileurl="file://$PROJECT_DIR$/DAM2.iml" filepath="$PROJECT_DIR$/DAM2.iml" />
     </modules>
   </component>
