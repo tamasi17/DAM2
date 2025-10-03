@@ -1,0 +1,4 @@
+Laura,8.5
+Pedro,6.0
+Marina,9.2
+Raúl,7.7

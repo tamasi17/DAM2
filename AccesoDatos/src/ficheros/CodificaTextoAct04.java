@@ -26,9 +26,14 @@ public class CodificaTextoAct04 {
             System.out.println("Creado el fichero: " + original);
         }
 
+        /*
+
+
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(fCodISO))){
 
         }
 
+
+         */
     }
 }
