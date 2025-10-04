@@ -23,11 +23,11 @@ public class Ej5_EntradaDatos {
         ///  Lista de palabras
 
         ArrayList<String> lista = new ArrayList<>(Arrays.asList("Pope", "Palace", "Cebri", "Mats"));
-
+        /*
         try(BufferedWriter bw = new BufferedWriter()){
 
         }
-
+        */
         /// try con resources a partir de aqui
 
         ///  BufferedWriter conectado a getOutputStream()
