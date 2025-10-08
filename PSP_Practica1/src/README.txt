@@ -3,7 +3,7 @@
 PRACTICA UT1
 Mati Eidelman
 
-Seguimiento:
+Seguimiento Simulador Malware:
 
     En primer lugar hice todo el proceso en el main.
     Como quedaba muy cargado lo he puesto por separado en una clase SimuladorMalware.
