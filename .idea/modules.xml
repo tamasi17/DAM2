@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AccesoDatos/AccesoDatos.iml" filepath="$PROJECT_DIR$/AccesoDatos/AccesoDatos.iml" />
-      <module fileurl="file://$PROJECT_DIR$/AplicacionesMoviles/AplicacionesMoviles.iml" filepath="$PROJECT_DIR$/AplicacionesMoviles/AplicacionesMoviles.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AccesoDatos_Practica1/AccesoDatos_Practica1.iml" filepath="$PROJECT_DIR$/AccesoDatos_Practica1/AccesoDatos_Practica1.iml" />
       <module fileurl="file://$PROJECT_DIR$/DAM2.iml" filepath="$PROJECT_DIR$/DAM2.iml" />
       <module fileurl="file://$PROJECT_DIR$/PSP_Practica1/PSP_Practica1.iml" filepath="$PROJECT_DIR$/PSP_Practica1/PSP_Practica1.iml" />
       <module fileurl="file://$PROJECT_DIR$/ProcesosServicios/ProcesosServicios.iml" filepath="$PROJECT_DIR$/ProcesosServicios/ProcesosServicios.iml" />
