@@ -10,9 +10,9 @@ public class Ej2_Pokemon {
 
         crearFichero(fichero);
 
-        escribirEquipoPokemon(fichero);
+            escribirEquipoPokemon(fichero);
 
-        leerEquipoPokemon(fichero);
+            leerEquipoPokemon(fichero);
 
     }
 
