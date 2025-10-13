@@ -48,20 +48,20 @@ public class Ej7_BuscarPalabra {
 
     private static void buscaPalabra(File fichero, String palabraBuscada) {
         try (BufferedReader br = new BufferedReader(new FileReader(fichero))) {
-            System.out.println("Buscando " + palabraBuscada);
+            System.out.println("Buscando " + palabraBuscada + "...");
             String linea;
             boolean encontrado = false;
             while ((linea = br.readLine()) != null && !encontrado) {
                 if (linea.contains(palabraBuscada)) {
                     encontrado = true;
+                    System.out.println("Se ha encontrado la palabra en el siguiente verso:\n" + linea);
                 }
             }
 
             if ((linea = br.readLine()) != null && !encontrado) {
                 System.out.println("No se ha encontrado la palabra " + palabraBuscada);
-            } else {
-                System.out.println("Se ha encontrado la palabra:\n" + linea);
             }
+
         } catch (IOException ioe) {
             System.err.println("Error de E/S");
         }
