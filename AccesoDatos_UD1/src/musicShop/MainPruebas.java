@@ -25,56 +25,22 @@ public class MainPruebas {
 
         addingToCart("guitar");
 
-        productBought(goToPayment("guitar", 1200));
+        goToPayment("guitar", 1200);
 
         randomErrorOccurs();
 
         addingToCart("bass");
 
-        productBought(goToPayment("guitar", 1400));
+        goToPayment("bass", 1400);
 
-        restock("bass");
+        restock("bass", 3);
 
         closeShop();
 
 
     }
 
-    private static void closeShop() {
-        LOGGER.info("Application", "Shop closed at " + LocalTime.now().format(FORMATTER));
-    }
 
-    private static void randomErrorOccurs() {
-        LOGGER.fatal("Application", "Configuration file 'app.properties' not found - aborting startup");
-        LOGGER.fatal("SystemCore", "Unhandled exception in main thread — terminating application");
-    }
-
-    /** Restocks the indicated instrument.
-     * Returns true if restock was succesful, false if not.
-     * @param type
-     * @return
-     */
-    private static boolean restock(String type) {
-        LOGGER.info("InventoryService", "Restocked product: " + "product");
-        return true;
-    }
-
-    private static String goToPayment(String type, int amountPaid) {
-        // CALCULAR TOTAL AQUI ---- DALE UN INT TOTAL A LOS INSTRUMENTOS
-        String sale = null;
-        LOGGER.debug("PaymentService", "Calculated total: subtotal=1199.99€, tax=252.00€, shipping=0.00€");
-        if (amountPaid<1300){
-        LOGGER.error("OrderService", "Payment rejected");
-        } else {
-         sale = type;
-        }
-        return sale;
-    }
-
-    private static void productBought(String type) {
-        // if (type.stock < 3) { AÑADIR WARN:
-        LOGGER.warn("InventoryService", "Stock low for: " + "product" + ". Few units left");
-    }
 
     private static void addingToCart(String type) {
         System.out.println("Added to cart: " + type);
@@ -88,4 +54,46 @@ public class MainPruebas {
         LOGGER.trace("ProductService", "Fetching product details...");
     }
 
+
+    private static void randomErrorOccurs() {
+        LOGGER.fatal("Application", "Configuration file 'app.properties' not found - aborting startup");
+        LOGGER.fatal("SystemCore", "Unhandled exception in main thread — terminating application");
+    }
+
+    /** Restocks the indicated instrument.
+     * Returns true if restock was succesful, false if not.
+     * @param type
+     * @return
+     */
+
+    private static String goToPayment(String type, int amountPaid) {
+        // CALCULAR TOTAL AQUI ---- DALE UN INT PRECIO A LOS INSTRUMENTOS
+        String sale = null;
+        LOGGER.debug("PaymentService", "Calculated total: subtotal=1199.99€, tax=252.00€, shipping=0.00€");
+        if (amountPaid<1300){
+            LOGGER.error("OrderService", "Payment rejected");
+        } else {
+            sale = type;
+            productBought(sale);
+        }
+        return sale;
+    }
+
+    private static void productBought(String type) {
+
+        // if (type.stock < 3) { AÑADIR WARN:
+        LOGGER.warn("InventoryService", "Stock low for: " + "product" + ". Few units left");
+    }
+
+
+    private static boolean restock(String type, int quantity) {
+
+        LOGGER.info("InventoryService", "Restocked product: " + "product");
+        return true;
+    }
+
+
+    private static void closeShop() {
+        LOGGER.info("Application", "Shop closed at " + LocalTime.now().format(FORMATTER));
+    }
 }
