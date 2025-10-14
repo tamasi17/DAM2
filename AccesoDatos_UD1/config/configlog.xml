@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LoggerConfig status="TRACE">
+    <!-- Ruta y nombre -->
+    <FilePath>logs/</FilePath>
+    <FileName>Log</FileName>
+
+    <!-- Niveles de prioridad -->
+    <Level>DEBUG</Level> <!-- TRACE, DEBUG, INFO, WARN, ERROR -->
+
+    <!-- Tamaño maximo antes de rotacion -->
+    <MaxFileSize>10MB</MaxFileSize>
+
+    <!-- Formato -->
+    <Pattern>%d [%s] %m</Pattern> <!-- %d: datetime, %s: source, %m: message -->
+</LoggerConfig>
