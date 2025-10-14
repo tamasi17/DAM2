@@ -4,6 +4,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import javax.print.Doc;
+import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -52,7 +53,32 @@ public class Logger {
         String time = LocalDateTime.now().format(FORMATTER);
         System.out.println(time + "["+level+"]: " + source + " - " + message);
         // if (logFile has exceeded max size){ rotateLog();
+        File log = new File("logs\\musicShop.log");
+        // if it doesnt exist mkdirs()
         // Add to log file with pattern format here
+    }
+
+    void rotateLog(File oldLog){
+        String time = LocalDateTime.now().format(FORMATTER);
+        String text="";
+        File aux = new File("logs\\musicShop" + time +".log");
+
+        // Reading old log
+        try(BufferedReader br = new BufferedReader(new FileReader(oldLog))){
+            String line;
+            while ((line=br.readLine()) != null){
+                text += br.readLine();
+            }
+        } catch (FileNotFoundException fnfe){
+            System.err.println("File not found");
+        } catch (IOException ioe){
+            System.err.println("I/O error");
+        }
+
+        // Writing old log in a stored file
+
+        // Compressing log?
+
     }
 
 

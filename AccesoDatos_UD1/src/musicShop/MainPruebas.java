@@ -19,9 +19,9 @@ public class MainPruebas {
 
     static void main() {
 
-        LOGGER.getLogLevel(); // para confirmar
+        LOGGER.getLogLevel(); // uncomment to check priority level
 
-        browsingProducts("guitar");
+        browsingProducts("guitar"); // opens shop
 
         addingToCart("guitar");
 
