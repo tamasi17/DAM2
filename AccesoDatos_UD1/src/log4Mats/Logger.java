@@ -23,15 +23,33 @@ public class Logger {
     private static volatile Logger instance;
 
     private Document configXml;
-    private static LogLevel configLevel = LogLevel.TRACE; //initialize only for testing
-
+    private static LogLevel configLevel;  // configLevel = LogLevel.TRACE; initialize only for testing
+    private File log;
+    private long maxSize=20;
     static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("MM/dd/yyyy 'at' hh:mm a");
 
+    /**
+     * Logger constructor will be called from getInstance() to respect Singleton.
+     * @param config
+     */
     private Logger(Document config) {
         Element e = config.getDocumentElement(); // xml root
-        configLevel = LogLevel.valueOf(e.getAttribute("status"));
+        this.configLevel = LogLevel.valueOf(e.getAttribute("status"));
+        e = config.getElementById("MaxFileSize");
+        this.maxSize = Long.parseLong(e.getTextContent());
+        e = config.getElementById("FilePath");
+        String path = e.getTextContent();
+        e = config.getElementById("FileName");
+        String name = e.getTextContent();
+        this.log = new File(path + name);
     }
 
+    /**
+     * Singleton method that returns an instance only if it does not exist previously.
+     * It is called from LogManager's getLogger(File xml).
+     * @param configXml
+     * @return
+     */
     public static Logger getInstance(Document configXml) {
         // Double-checked locking (DCL). Exists to prevent race condition between
         // multiple threads that may attempt to get singleton instance at the same time,
@@ -52,10 +70,17 @@ public class Logger {
     void log(LogLevel level, String source, String message) {
         String time = LocalDateTime.now().format(FORMATTER);
         System.out.println(time + "["+level+"]: " + source + " - " + message);
-        // if (logFile has exceeded max size){ rotateLog();
-        File log = new File("logs\\musicShop.log");
+        File log = new File("logs\\errors.log");
         // if it doesnt exist mkdirs()
-        // Add to log file with pattern format here
+        if (log.length()>=maxSize){
+            rotateLog(log);
+        }
+        // if (logFile has exceeded max size){ rotateLog();
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(log))){
+            bw.write(time + " [" + level + "] " + source + ": " + message);
+        } catch (IOException ioe){
+            System.err.println("Error in I/O while logging");
+        }
     }
 
     void rotateLog(File oldLog){

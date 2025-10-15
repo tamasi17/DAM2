@@ -2,13 +2,13 @@
 <LoggerConfig status="TRACE">
     <!-- Ruta y nombre -->
     <FilePath>logs/</FilePath>
-    <FileName>Log</FileName>
+    <FileName>Errors.log</FileName>
 
     <!-- Niveles de prioridad -->
     <Level>DEBUG</Level> <!-- TRACE, DEBUG, INFO, WARN, ERROR -->
 
-    <!-- Tamaño maximo antes de rotacion -->
-    <MaxFileSize>10MB</MaxFileSize>
+    <!-- Tamaño maximo antes de rotacion en MB -->
+    <MaxFileSize>10</MaxFileSize>
 
     <!-- Formato -->
     <Pattern>%d [%s] %m</Pattern> <!-- %d: datetime, %s: source, %m: message -->
