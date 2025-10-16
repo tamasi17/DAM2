@@ -100,7 +100,9 @@ public class Logger {
         String time = LocalDateTime.now().format(FORMATTER);
         String newLogName = log.getName().replace(".log","_"+time+".log");
 
-        System.out.println("Log has reached maximum size.\nCreating a new log: " + newLogName);
+        System.out.println("\no--------------------o\n" +
+                "Log has reached maximum size.\n" +
+                "Creating a new log: " + newLogName);
 
         try{
 
