@@ -41,17 +41,16 @@ public class MainPruebas {
     }
 
 
+    public static void browsingProducts(String type){
+        MUSIC_SHOP.productService(type);
+        LOGGER.info("Application", "Shop opened at " + LocalTime.now().format(FORMATTER));
+        LOGGER.trace("ProductService", "Fetching product details...");
+    }
 
     private static void addingToCart(String type) {
         System.out.println("Added to cart: " + type);
         LOGGER.debug("InventoryService", "Stock before sale: " + "product (" + "units" + ")");
         LOGGER.trace("CartManager", "Applying discount: -10%");
-    }
-
-    public static void browsingProducts(String type){
-        MUSIC_SHOP.productService(type);
-        LOGGER.info("Application", "Shop opened at " + LocalTime.now().format(FORMATTER));
-        LOGGER.trace("ProductService", "Fetching product details...");
     }
 
 
@@ -60,11 +59,6 @@ public class MainPruebas {
         LOGGER.fatal("SystemCore", "Unhandled exception in main thread — terminating application");
     }
 
-    /** Restocks the indicated instrument.
-     * Returns true if restock was succesful, false if not.
-     * @param type
-     * @return
-     */
 
     private static String goToPayment(String type, int amountPaid) {
         // CALCULAR TOTAL AQUI ---- DALE UN INT PRECIO A LOS INSTRUMENTOS
@@ -86,6 +80,11 @@ public class MainPruebas {
     }
 
 
+    /** Restocks the indicated instrument.
+     * Returns true if restock was succesful, false if not.
+     * @param type
+     * @return
+     */
     private static boolean restock(String type, int quantity) {
 
         LOGGER.info("InventoryService", "Restocked product: " + "product");

@@ -24,29 +24,32 @@ public class Logger {
 
     private Document configXml;
     private static LogLevel configLevel;  // configLevel = LogLevel.TRACE; initialize only for testing
+    private String logPath;
     private File log;
-    private long maxSize=20;
+    private long maxSize = 20;
     static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("MM/dd/yyyy 'at' hh:mm a");
 
     /**
      * Logger constructor will be called from getInstance() to respect Singleton.
+     *
      * @param config
      */
     private Logger(Document config) {
         Element e = config.getDocumentElement(); // xml root
         this.configLevel = LogLevel.valueOf(e.getAttribute("status"));
-        e = config.getElementById("MaxFileSize");
+        // getElementsByName() devuelve NodeList, item() devuelve Node, cast a Element para poder usarlo.
+        e = (Element) config.getElementsByTagName("MaxFileSize").item(0);
         this.maxSize = Long.parseLong(e.getTextContent());
-        e = config.getElementById("FilePath");
-        String path = e.getTextContent();
-        e = config.getElementById("FileName");
-        String name = e.getTextContent();
-        this.log = new File(path + name);
+        e = (Element) config.getElementsByTagName("FilePath").item(0);
+        this.logPath = e.getTextContent();
+        e = (Element) config.getElementsByTagName("FileName").item(0);
+        this.log = new File(this.logPath + e.getTextContent());
     }
 
     /**
      * Singleton method that returns an instance only if it does not exist previously.
      * It is called from LogManager's getLogger(File xml).
+     *
      * @param configXml
      * @return
      */
@@ -68,39 +71,45 @@ public class Logger {
     }
 
     void log(LogLevel level, String source, String message) {
+
         String time = LocalDateTime.now().format(FORMATTER);
-        System.out.println(time + "["+level+"]: " + source + " - " + message);
-        File log = new File("logs\\errors.log");
-        // if it doesnt exist mkdirs()
+        System.out.println(time + "[" + level + "]: " + source + " - " + message); // to check
+
+        confirmLogExists();
+      /*
         if (log.length()>=maxSize){
             rotateLog(log);
         }
-        // if (logFile has exceeded max size){ rotateLog();
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(log))){
+
+       */
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(log))) {
             bw.write(time + " [" + level + "] " + source + ": " + message);
-        } catch (IOException ioe){
+        } catch (IOException ioe) {
             System.err.println("Error in I/O while logging");
         }
     }
 
-    void rotateLog(File oldLog){
+    void rotateLog(File oldLog) {
         String time = LocalDateTime.now().format(FORMATTER);
-        String text="";
-        File aux = new File("logs\\musicShop" + time +".log");
+        StringBuilder text = new StringBuilder();
+        File aux = new File(this.logPath + time + ".log");
 
         // Reading old log
-        try(BufferedReader br = new BufferedReader(new FileReader(oldLog))){
+        try (BufferedReader br = new BufferedReader(new FileReader(oldLog))) {
             String line;
-            while ((line=br.readLine()) != null){
-                text += br.readLine();
+            while ((line = br.readLine()) != null) {
+                text.append(br.readLine()); // IntelliJ propone text como StringBuilder no como String (?)
             }
-        } catch (FileNotFoundException fnfe){
+        } catch (FileNotFoundException fnfe) {
             System.err.println("File not found");
-        } catch (IOException ioe){
+        } catch (IOException ioe) {
             System.err.println("I/O error");
         }
 
         // Writing old log in a stored file
+        try (BufferedWriter bw = new BufferedWriter((new FileWriter(aux)))){
+            // FALTA ESTO
+        }
 
         // Compressing log?
 
@@ -157,6 +166,27 @@ public class Logger {
 
     public void getLogLevel() {
         System.out.println(configLevel);
+    }
+
+    private void confirmLogExists() {
+        if (!this.log.exists()) {
+            try {
+                File parent = log.getParentFile();
+                // if log has a parent directory but the directory does not exist
+                if (parent != null && !parent.exists()) {
+                    if (!parent.mkdirs()) {
+                        throw new IOException("Failed to create directories: " + parent.getAbsolutePath());
+                    }
+                }
+                if (this.log.createNewFile()) {
+                    System.out.println("Log file created: " + log.getAbsolutePath());
+                } else {
+                    System.out.println("Log file exists. Writing on: " + log.getAbsolutePath());
+                }
+            } catch (IOException ioe) {
+                System.err.println("Log file was not created: " + ioe.getLocalizedMessage());
+            }
+        }
     }
 
 }
