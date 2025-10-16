@@ -21,6 +21,8 @@ public class MainPruebas {
 
         LOGGER.getLogLevel(); // uncomment to check priority level
 
+        startBrowsing();
+
         browsingProducts("guitar"); // opens shop
 
         addingToCart("guitar");
@@ -40,10 +42,12 @@ public class MainPruebas {
 
     }
 
+    public static void startBrowsing(){
+        LOGGER.info("Application", "Shop opened at " + LocalTime.now().format(FORMATTER));
+    }
 
     public static void browsingProducts(String type){
         MUSIC_SHOP.productService(type);
-        LOGGER.info("Application", "Shop opened at " + LocalTime.now().format(FORMATTER));
         LOGGER.trace("ProductService", "Fetching product details...");
     }
 

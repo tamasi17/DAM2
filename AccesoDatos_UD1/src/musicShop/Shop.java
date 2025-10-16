@@ -7,7 +7,8 @@ import java.util.Map;
 
 public class Shop {
 
-    private Map<String, Integer> stock = new HashMap<>(); // maybe enums for each instrument?
+    private final Map<String, Integer> stock = new HashMap<>(); // maybe enums for each instrument?
+
 
     public Shop(int guitarStock, int bassStock, int drumSetStock, int bongoStock) {
         stock.put("guitar", guitarStock);

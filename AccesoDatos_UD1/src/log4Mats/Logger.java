@@ -5,6 +5,8 @@ import org.w3c.dom.Element;
 
 import javax.print.Doc;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -26,8 +28,12 @@ public class Logger {
     private static LogLevel configLevel;  // configLevel = LogLevel.TRACE; initialize only for testing
     private String logPath;
     private File log;
-    private long maxSize = 20;
-    static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("MM/dd/yyyy 'at' hh:mm a");
+    private long maxSize;
+
+    // Date/time format needs to be Windows-friendly.
+    // Program runs really fast, had to add milliseconds to the log naming.
+    static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss_SSS");
+
 
     /**
      * Logger constructor will be called from getInstance() to respect Singleton.
@@ -43,7 +49,8 @@ public class Logger {
         e = (Element) config.getElementsByTagName("FilePath").item(0);
         this.logPath = e.getTextContent();
         e = (Element) config.getElementsByTagName("FileName").item(0);
-        this.log = new File(this.logPath + e.getTextContent());
+        this.logPath += e.getTextContent();
+        this.log = new File(this.logPath);
     }
 
     /**
@@ -72,16 +79,12 @@ public class Logger {
 
     void log(LogLevel level, String source, String message) {
 
+        confirmLogExists();
+        rotateLogIfNeeded(log);
+
         String time = LocalDateTime.now().format(FORMATTER);
         System.out.println(time + "[" + level + "]: " + source + " - " + message); // to check
 
-        confirmLogExists();
-      /*
-        if (log.length()>=maxSize){
-            rotateLog(log);
-        }
-
-       */
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(log))) {
             bw.write(time + " [" + level + "] " + source + ": " + message);
         } catch (IOException ioe) {
@@ -89,29 +92,31 @@ public class Logger {
         }
     }
 
-    void rotateLog(File oldLog) {
+    void rotateLogIfNeeded(File oldLog) {
+
+        long size = log.length();
+        if (size<maxSize) return;
+
         String time = LocalDateTime.now().format(FORMATTER);
-        StringBuilder text = new StringBuilder();
-        File aux = new File(this.logPath + time + ".log");
+        String newLogName = log.getName().replace(".log","_"+time+".log");
 
-        // Reading old log
-        try (BufferedReader br = new BufferedReader(new FileReader(oldLog))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                text.append(br.readLine()); // IntelliJ propone text como StringBuilder no como String (?)
-            }
-        } catch (FileNotFoundException fnfe) {
-            System.err.println("File not found");
-        } catch (IOException ioe) {
-            System.err.println("I/O error");
+        System.out.println("Log has reached maximum size.\nCreating a new log: " + newLogName);
+
+        try{
+
+        // Files asks for a Path
+        Path source = log.toPath();
+        // move( Path source, Path target, options...)
+        // resolveSibling creates a new path in the same directory but with a new name
+        Files.move(source,source.resolveSibling(newLogName));
+
+        Files.createFile(source); // new and empty file, returns Path
+
+        } catch (IOException ioe){
+            System.err.println("Log file was not rotated correctly");
         }
 
-        // Writing old log in a stored file
-        try (BufferedWriter bw = new BufferedWriter((new FileWriter(aux)))){
-            // FALTA ESTO
-        }
-
-        // Compressing log?
+        // ---------------   Compressing log? --> check GZIPOutputStream;
 
     }
 
