@@ -7,7 +7,7 @@
     <!-- Priority levels:  HANDLED IN STATUS? -->
     <Level>DEBUG</Level> <!-- TRACE, DEBUG, INFO, WARN, ERROR -->
 
-    <!-- Maximum size before rotation in MB -->
+    <!-- Maximum size before rotation in bytes -->
     <MaxFileSize>150</MaxFileSize>
 
     <!-- Formatting DID FORMATTING IN THE LOGGER FOR NOW -->

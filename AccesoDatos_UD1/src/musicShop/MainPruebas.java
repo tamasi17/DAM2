@@ -23,7 +23,7 @@ public class MainPruebas {
 
         startBrowsing();
 
-        browsingProducts("guitar"); // opens shop
+        browsingProducts(new Guitar("Fender", true)); // opens shop
 
         addingToCart("guitar");
 
@@ -35,7 +35,7 @@ public class MainPruebas {
 
         goToPayment("bass", 1400);
 
-        restock("bass", 3);
+        restock(new Bass("Ibanez", true), 3);
 
         closeShop();
 
@@ -46,13 +46,13 @@ public class MainPruebas {
         LOGGER.info("Application", "Shop opened at " + LocalTime.now().format(FORMATTER));
     }
 
-    public static void browsingProducts(String type){
+    public static void browsingProducts(Instrument type){
         MUSIC_SHOP.productService(type);
         LOGGER.trace("ProductService", "Fetching product details...");
     }
 
-    private static void addingToCart(String type) {
-        System.out.println("Added to cart: " + type);
+    private static void addingToCart(Instrument type) {
+        System.out.println("Added to cart: " + type.getClass());
         LOGGER.debug("InventoryService", "Stock before sale: " + "product (" + "units" + ")");
         LOGGER.trace("CartManager", "Applying discount: -10%");
     }
@@ -77,10 +77,13 @@ public class MainPruebas {
         return sale;
     }
 
-    private static void productBought(String type) {
+    private static void productBought(Instrument type) {
 
-        // if (type.stock < 3) { AÑADIR WARN:
-        LOGGER.warn("InventoryService", "Stock low for: " + "product" + ". Few units left");
+         if (MUSIC_SHOP.getStock(type) < 3) {
+            LOGGER.warn("InventoryService", "Stock low for: " + type.getClass() + ". " +
+                    "Less than three units left");
+         }
+
     }
 
 
@@ -89,9 +92,9 @@ public class MainPruebas {
      * @param type
      * @return
      */
-    private static boolean restock(String type, int quantity) {
-
-        LOGGER.info("InventoryService", "Restocked product: " + "product");
+    private static boolean restock(Instrument type, int quantity) {
+        MUSIC_SHOP.restock(type, quantity);
+        LOGGER.info("InventoryService", "Restocked product: " + type.getClass());
         return true;
     }
 
