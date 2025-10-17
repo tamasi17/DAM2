@@ -1,5 +1,7 @@
 package musicShop;
 
+import java.util.Objects;
+
 public class DrumSet implements PercussionInstrument{
 
     double price=3100;
@@ -41,4 +43,15 @@ public class DrumSet implements PercussionInstrument{
         return "DRUM";
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        DrumSet drumSet = (DrumSet) o;
+        return Double.compare(price, drumSet.price) == 0 && pieces == drumSet.pieces && Objects.equals(brand, drumSet.brand);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(price, pieces, brand);
+    }
 }

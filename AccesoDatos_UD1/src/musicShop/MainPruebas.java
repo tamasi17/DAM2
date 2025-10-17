@@ -12,16 +12,19 @@ public class MainPruebas {
 
     private static final File XML = new File("config\\configlog.xml");
     private static final Logger LOGGER = LogManager.getLogger(XML);
-    private static final Shop MUSIC_SHOP = Shop.openShop(7,4, 3,6);
+    private static final Shop MUSIC_SHOP = new Shop(7,4, 3,6);
     static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("hh:mm a");
 
     static void main() {
 
         LOGGER.getLogLevel(); // uncomment to check priority level
+        Guitar fender = new Guitar("Fender", true);
+
+        System.out.println("Stock guitarras: " + MUSIC_SHOP.getStock(fender));
+
 
         startBrowsing();
 
-        Guitar fender = new Guitar("Fender", true);
 
         browsingProducts(fender); // opens shop
 
@@ -67,6 +70,9 @@ public class MainPruebas {
 
 
     private static Instrument goToPayment(Instrument type, int amountPaid) {
+
+        //  SIEMPRE SALE EL STOCK TYPE NULL
+
 
         if(MUSIC_SHOP.getStock(type) == null){
             LOGGER.warn("OrderService", "No stock for required instrument");

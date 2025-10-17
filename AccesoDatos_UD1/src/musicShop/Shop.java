@@ -11,9 +11,9 @@ public class Shop {
 
     private final Map<Instrument, Integer> stock = new HashMap<>(); // maybe enums for each instrument?
 
-    private final String stockArchivePath = "/stock/stockArchive.bin";
+    private final String stockArchivePath = "stock\\stockArchive.bin";
 
-    private Shop(int guitarStock, int bassStock, int drumSetStock, int bongoStock) {
+    public Shop(int guitarStock, int bassStock, int drumSetStock, int bongoStock) {
         stock.put(new Guitar("Fender", true), guitarStock);
         stock.put(new Bass("Ibanez", true), bassStock);
         stock.put(new Bongo("Leather"), bongoStock);
@@ -53,6 +53,13 @@ public class Shop {
         File parent = new File("stock");
         if (!parent.exists()) parent.mkdirs();
 
+        File stockArchive = null;
+        try {
+            stockArchive = new File(stockArchivePath);
+            stockArchive.createNewFile();
+        } catch (IOException ioe) {
+            System.err.println("Error creating the binary file: " + stockArchive.getAbsolutePath());
+        }
 
         try (RandomAccessFile raf = new RandomAccessFile(stockArchivePath, "rw")) {
 
@@ -66,7 +73,7 @@ public class Shop {
             raf.writeChars(type.getCode()); // four char code, each char 2 bytes = 8 bytes
 
         } catch (FileNotFoundException fnfe) {
-            System.err.println("File not found. " + fnfe.getLocalizedMessage());
+            System.err.println("Binary file not found, could not write: " + fnfe.getLocalizedMessage());
         } catch (IOException ioe) {
             System.err.println("I/O error occurred when accessing stock archive.");
         }
@@ -87,7 +94,7 @@ public class Shop {
             }
 
         } catch (FileNotFoundException fnfe) {
-            System.err.println("File not found" + fnfe.getLocalizedMessage());
+            System.err.println("Binary file not found, could not read: " + fnfe.getLocalizedMessage());
         } catch (IOException ioe) {
             System.err.println("I/O error occurred when accessing stock archive.");
         }
@@ -96,6 +103,8 @@ public class Shop {
 
 
     public Integer getStock(Instrument type) {
-        return stock.get(type);
+        Integer stockActual = stock.get(type);
+        stockActual = stockActual == null ? 9999 : stockActual;
+        return stockActual;
     }
 }

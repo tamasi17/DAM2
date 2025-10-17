@@ -1,5 +1,7 @@
 package musicShop;
 
+import java.util.Objects;
+
 public class Bass implements StringInstrument{
 
     double price=1200;
@@ -42,5 +44,15 @@ public class Bass implements StringInstrument{
         return "BASS";
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Bass bass = (Bass) o;
+        return Double.compare(price, bass.price) == 0 && strings == bass.strings && electric == bass.electric && Objects.equals(brand, bass.brand);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(price, strings, brand, electric);
+    }
 }

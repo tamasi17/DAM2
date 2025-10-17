@@ -1,5 +1,7 @@
 package musicShop;
 
+import java.util.Objects;
+
 public class Bongo implements PercussionInstrument{
 
     double price=40;
@@ -31,6 +33,18 @@ public class Bongo implements PercussionInstrument{
     @Override
     public double getPrice() {
         return price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Bongo bongo = (Bongo) o;
+        return Double.compare(price, bongo.price) == 0 && Objects.equals(material, bongo.material);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(price, material);
     }
 
     @Override
