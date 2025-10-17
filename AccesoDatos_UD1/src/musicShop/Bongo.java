@@ -23,4 +23,19 @@ public class Bongo implements PercussionInstrument{
     public String toString() {
         return material + " bongo.";
     }
+
+    public int getProductID() {
+        return productID;
+    }
+
+    @Override
+    public double getPrice() {
+        return price;
+    }
+
+    @Override
+    public String getCode() {
+        return "BONG";
+    }
+
 }

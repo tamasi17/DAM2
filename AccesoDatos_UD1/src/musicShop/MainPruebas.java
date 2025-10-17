@@ -9,8 +9,6 @@ import java.time.format.DateTimeFormatter;
 
 public class MainPruebas {
 
-    // COMO SE LE PASA UN .CLASS EN VEZ DE UN .XML ?
-//    private static final Logger logger = LogManager.getLogger(Log4jEjemplo.class);
 
     private static final File XML = new File("config\\configlog.xml");
     private static final Logger LOGGER = LogManager.getLogger(XML);
@@ -23,21 +21,25 @@ public class MainPruebas {
 
         startBrowsing();
 
-        browsingProducts(new Guitar("Fender", true)); // opens shop
+        Guitar fender = new Guitar("Fender", true);
 
-        addingToCart("guitar");
+        browsingProducts(fender); // opens shop
 
-        goToPayment("guitar", 1200);
+        addingToCart(fender);
+
+        goToPayment(fender, 1200); // if product is bought, writes to binary document
 
         randomErrorOccurs();
 
-        addingToCart("bass");
+        Bass ibanez = new Bass("Ibanez", true);
 
-        goToPayment("bass", 1400);
+        addingToCart(ibanez);
 
-        restock(new Bass("Ibanez", true), 3);
+        goToPayment(ibanez, 1400);
 
-        closeShop();
+        restock(ibanez, 3);
+
+        closeShop(); // reads sales from binary document
 
 
     }
@@ -52,7 +54,7 @@ public class MainPruebas {
     }
 
     private static void addingToCart(Instrument type) {
-        System.out.println("Added to cart: " + type.getClass());
+        System.out.println("Added to cart: " + type.getCode());
         LOGGER.debug("InventoryService", "Stock before sale: " + "product (" + "units" + ")");
         LOGGER.trace("CartManager", "Applying discount: -10%");
     }
@@ -64,11 +66,18 @@ public class MainPruebas {
     }
 
 
-    private static String goToPayment(String type, int amountPaid) {
-        // CALCULAR TOTAL AQUI ---- DALE UN INT PRECIO A LOS INSTRUMENTOS
-        String sale = null;
-        LOGGER.debug("PaymentService", "Calculated total: subtotal=1199.99€, tax=252.00€, shipping=0.00€");
-        if (amountPaid<1300){
+    private static Instrument goToPayment(Instrument type, int amountPaid) {
+
+        if(MUSIC_SHOP.getStock(type) == null){
+            LOGGER.warn("OrderService", "No stock for required instrument");
+            return null;
+        }
+
+        Instrument sale = null;
+
+        LOGGER.debug("PaymentService", "Calculated total: " + type.getPrice());
+
+        if (amountPaid<type.getPrice()){
             LOGGER.error("OrderService", "Payment rejected");
         } else {
             sale = type;
@@ -77,14 +86,23 @@ public class MainPruebas {
         return sale;
     }
 
+    /**
+     * Method that confirms a sale, writes to binary document calling writeToRaf()
+     * @param type
+     */
     private static void productBought(Instrument type) {
+        MUSIC_SHOP.writeToRaf(type);
+
+
 
          if (MUSIC_SHOP.getStock(type) < 3) {
-            LOGGER.warn("InventoryService", "Stock low for: " + type.getClass() + ". " +
+            LOGGER.warn("InventoryService", "Stock low for: " + type.getCode() + ". " +
                     "Less than three units left");
+            MUSIC_SHOP.restock(type,4);
          }
+        }
 
-    }
+
 
 
     /** Restocks the indicated instrument.
@@ -94,12 +112,14 @@ public class MainPruebas {
      */
     private static boolean restock(Instrument type, int quantity) {
         MUSIC_SHOP.restock(type, quantity);
-        LOGGER.info("InventoryService", "Restocked product: " + type.getClass());
+        LOGGER.info("InventoryService", "Restocked product: " + type.getCode());
         return true;
     }
 
 
     private static void closeShop() {
+        // Reading sales from the binary document
+        MUSIC_SHOP.readRaf();
         LOGGER.info("Application", "Shop closed at " + LocalTime.now().format(FORMATTER));
     }
 }

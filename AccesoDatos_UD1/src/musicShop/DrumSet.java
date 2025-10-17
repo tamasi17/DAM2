@@ -26,4 +26,19 @@ public class DrumSet implements PercussionInstrument{
         return brand + " drum set: " +
                 + pieces + " pieces.";
     }
+
+    public int getProductID() {
+        return productID;
+    }
+
+    @Override
+    public double getPrice() {
+        return price;
+    }
+
+    @Override
+    public String getCode() {
+        return "DRUM";
+    }
+
 }

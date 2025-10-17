@@ -27,4 +27,20 @@ public class Bass implements StringInstrument{
         return brand + " "
                 + (electric ? "Electric" : "Classical") + " bass.";
     }
+
+    public int getProductID() {
+        return productID;
+    }
+
+    @Override
+    public double getPrice() {
+        return price;
+    }
+
+    @Override
+    public String getCode() {
+        return "BASS";
+    }
+
+
 }
