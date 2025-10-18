@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Guitar implements StringInstrument{
 
-    double price=1200;
+    double price=900;
     int strings = 6;
     String brand;
     boolean electric;
@@ -15,7 +15,7 @@ public class Guitar implements StringInstrument{
     public Guitar(String brand, boolean electric) {
         this.brand=brand;
         this.electric=electric;
-        contador++;
+        ++contador;
         productID=contador;
     }
 

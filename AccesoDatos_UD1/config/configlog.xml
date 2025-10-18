@@ -4,11 +4,8 @@
     <FilePath>logs/</FilePath>
     <FileName>errors.log</FileName>
 
-    <!-- Priority levels:  HANDLED IN STATUS? -->
-    <Level>DEBUG</Level> <!-- TRACE, DEBUG, INFO, WARN, ERROR -->
-
     <!-- Maximum size before rotation in bytes -->
-    <MaxFileSize>150</MaxFileSize>
+    <MaxFileSize>500</MaxFileSize>
 
     <!-- Formatting DID FORMATTING IN THE LOGGER FOR NOW -->
     <Pattern>%d [%s] %m</Pattern> <!-- %d: datetime, %s: source, %m: message -->

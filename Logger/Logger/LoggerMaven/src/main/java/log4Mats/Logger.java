@@ -26,11 +26,11 @@ public class Logger {
     // This field must be declared volatile so that double check lock would work correctly.
     private static volatile Logger instance;
 
-    private Document configXml;
-    private static LogLevel configLevel;  // configLevel = LogLevel.TRACE; initialize only for testing
-    private String logPath;
+    private static LogLevel configLevel;
     private File log;
-    private long maxSize;
+    private final long maxSize;
+    private static int logCounter = 1;
+
 
     // Date/time format needs to be Windows-friendly.
     // Program runs really fast, had to add milliseconds to the log naming.
@@ -39,8 +39,9 @@ public class Logger {
 
     /**
      * Logger constructor will be called from getInstance() to respect Singleton.
+     * DOM parsing
      *
-     * @param config
+     * @param config XML document with configuration info.
      */
     private Logger(Document config) {
         Element e = config.getDocumentElement(); // xml root
@@ -49,11 +50,26 @@ public class Logger {
         e = (Element) config.getElementsByTagName("MaxFileSize").item(0);
         this.maxSize = Long.parseLong(e.getTextContent());
         e = (Element) config.getElementsByTagName("FilePath").item(0);
-        this.logPath = e.getTextContent();
+        String logPath = e.getTextContent();
         e = (Element) config.getElementsByTagName("FileName").item(0);
-        this.logPath += e.getTextContent();
-        this.log = new File(this.logPath);
+        logPath += e.getTextContent();
+        this.log = new File(logPath);
     }
+
+    /**
+     * Logger constructor will be called from getInstance() to respect Singleton.
+     * Jackson Data Binding
+     *
+     * @param config from Json document with configuration info.
+     */
+    public Logger(LogConfig config) {
+        this.configLevel = LogLevel.valueOf(config.getStatus());
+        String logPath = config.getFilePath() + config.getFileName();
+        this.log = new File(logPath);
+        this.maxSize = config.getMaxFileSize();
+        // this.pattern = config.getPattern();
+    }
+
 
     /**
      * Singleton method that returns an instance only if it does not exist previously.
@@ -79,44 +95,75 @@ public class Logger {
         }
     }
 
-    void log(LogLevel level, String source, String message) {
+    /**
+     * Singleton method that returns an instance only if it does not exist previously.
+     * It is called from LogManager's getLoggerFromJson(File json).
+     *
+     * @param configJson Data binded from LogConfig configuration json
+     * @return
+     */
+    public static Logger getInstance(LogConfig configJson) {
+        // Double-checked locking (DCL). Exists to prevent race condition between
+        // multiple threads that may attempt to get singleton instance at the same time,
+        // creating separate instances as a result.
+
+        Logger result = instance;
+        if (result != null) {
+            return result;
+        }
+        synchronized (Logger.class) {
+            if (instance == null) {
+                instance = new Logger(configJson);
+            }
+            return instance;
+        }
+    }
+
+
+    public int log(LogLevel level, String source, String message) {
 
         confirmLogExists();
         rotateLogIfNeeded(log);
 
         String time = LocalDateTime.now().format(FORMATTER);
-        System.out.println(time + "[" + level + "]: " + source + " - " + message); // to check
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(log))) {
-            bw.write(time + " [" + level + "] " + source + ": " + message);
+        // uncomment to check
+        //System.out.println(time + "[" + level + "]: " + source + " - " + message);
+
+        // new FileWriter(log, true) to write at the end
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(log, true))) {
+            bw.write("["+ logCounter +"] ["+ time +"] ["+ level +"] ["+ source +"]: "+ message +"\n");
         } catch (IOException ioe) {
             System.err.println("Error in I/O while logging");
         }
+
+        return ++logCounter;
     }
 
     void rotateLogIfNeeded(File oldLog) {
 
         long size = log.length();
-        if (size<maxSize) return;
+        if (size < maxSize) return;
 
         String time = LocalDateTime.now().format(FORMATTER);
-        String newLogName = log.getName().replace(".log","_"+time+".log");
+        String newLogName = log.getName().replace(".log", "_" + time + ".log");
 
-        System.out.println("\no--------------------o\n" +
+        System.out.println("------------------------\n" +
                 "Log has reached maximum size.\n" +
-                "Creating a new log: " + newLogName);
+                "Creating a new log: " + newLogName +
+                "\n------------------------");
 
-        try{
+        try {
 
-        // Files asks for a Path
-        Path source = log.toPath();
-        // move( Path source, Path target, options...)
-        // resolveSibling creates a new path in the same directory but with a new name
-        Files.move(source,source.resolveSibling(newLogName));
+            // Files asks for a Path
+            Path source = log.toPath();
+            // move( Path source, Path target, options...)
+            // resolveSibling creates a new path in the same directory but with a new name
+            Files.move(source, source.resolveSibling(newLogName));
 
-        Files.createFile(source); // new and empty file, returns Path
+            Files.createFile(source); // new and empty file, returns Path
 
-        } catch (IOException ioe){
+        } catch (IOException ioe) {
             System.err.println("Log file was not rotated correctly");
         }
 
@@ -126,50 +173,50 @@ public class Logger {
 
 
     public void trace(String source, String message) {
-        System.out.println("Tracing...");
+        System.out.println("\n· Tracing...");
         if (LogLevel.TRACE.isLoggable(configLevel)) {
-            log(LogLevel.TRACE, source, message);
-            System.out.println("Trace logged: " + "traceID here");
+            int logID = log(LogLevel.TRACE, source, message);
+            System.out.println("Trace logged. ID:" + logID);
         }
     }
 
     public void debug(String source, String message) {
-        System.out.println("Debugging...");
+        System.out.println("\n· Debug logging...");
         if (LogLevel.DEBUG.isLoggable(configLevel)) {
-            log(LogLevel.DEBUG, source, message);
-            System.out.println("Debug logged: " + "traceID here");
+            int logID = log(LogLevel.DEBUG, source, message);
+            System.out.println("Debug logged. ID:" + logID);
         }
     }
 
     public void info(String source, String message) {
-        System.out.println("Retrieving info...");
+        System.out.println("\n· Logger retrieving info...");
         if (LogLevel.INFO.isLoggable(configLevel)) {
-            log(LogLevel.INFO, source, message);
-            System.out.println("Info logged: " + "ID here");
+            int logID = log(LogLevel.INFO, source, message);
+            System.out.println("Info logged. ID:" + logID);
         }
     }
 
     public void warn(String source, String message) {
-        System.out.println("Retrieving warnings...");
+        System.out.println("\n· Retrieving warnings...");
         if (LogLevel.WARN.isLoggable(configLevel)) {
-            log(LogLevel.WARN, source, message);
-            System.out.println("Warning logged: " + "ID here");
+            int logID = log(LogLevel.WARN, source, message);
+            System.out.println("Warning logged. ID:" + logID);
         }
     }
 
     public void error(String source, String message) {
-        System.out.println("Retrieving info...");
+        System.out.println("\n· Logging error...");
         if (LogLevel.ERROR.isLoggable(configLevel)) {
-            log(LogLevel.ERROR, source, message);
-            System.out.println("Error logged: " + "ID here");
+            int logID = log(LogLevel.ERROR, source, message);
+            System.out.println("Error logged. ID:" + logID);
         }
     }
 
     public void fatal(String source, String message) {
-        System.out.println("Program is crashing lol...");
+        System.out.println("\n· Program is crashing...");
         if (LogLevel.FATAL.isLoggable(configLevel)) {
-            log(LogLevel.FATAL, source, message);
-            System.out.println("Fatality logged: " + "ID here");
+            int logID = log(LogLevel.FATAL, source, message);
+            System.out.println("Fatality logged. ID:" + logID);
         }
     }
 
@@ -184,7 +231,7 @@ public class Logger {
                 // if log has a parent directory but the directory does not exist
                 if (parent != null && !parent.exists()) {
                     if (!parent.mkdirs()) {
-                        throw new IOException("Failed to create directories: " + parent.getAbsolutePath());
+                        throw new IOException("Failed to create log directories: " + parent.getAbsolutePath());
                     }
                 }
                 if (this.log.createNewFile()) {
