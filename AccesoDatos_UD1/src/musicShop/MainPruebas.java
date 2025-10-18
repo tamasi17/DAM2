@@ -10,20 +10,21 @@ import java.time.format.DateTimeFormatter;
 public class MainPruebas {
 
     // XML
-//    private static final File XML = new File("config\\configlog.xml");
-//    private static final Logger LOGGER = LogManager.getLogger(XML);
+    private static final File XML = new File("config\\configlog.xml");
+    private static final Logger LOGGER = LogManager.getLogger(XML);
 
     // JSON
-    private static final File JSON = new File("config\\logConfig.json");
-    private static final Logger LOGGER = LogManager.getLoggerFromJson(JSON);
+//    private static final File JSON = new File("config\\logConfig.json");
+//    private static final Logger LOGGER = LogManager.getLoggerFromJson(JSON);
 
-    private static final Shop MUSIC_SHOP = new Shop(7,4, 3,6);
+    private static final Shop MUSIC_SHOP = new Shop(7,2, 3,6);
     static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("hh:mm a");
 
     static void main() {
 
         System.out.println("Priority level for logs:");
         LOGGER.getLogLevel();
+        LOGGER.setLogToConsole(true);
 
         startBrowsing();
 
@@ -53,6 +54,12 @@ public class MainPruebas {
 
         closeShop(); // reads sales from binary document
 
+        System.out.println("\nReading a specific record:");
+        System.out.println(MUSIC_SHOP.readRaf(3));
+        System.out.println("Modifying a specific record with info of a different instrument:");
+        MUSIC_SHOP.modRaf(3,new Bongo("Leather"));
+        System.out.println("Reading it again:");
+        System.out.println(MUSIC_SHOP.readRaf(3));
 
     }
 
@@ -69,8 +76,8 @@ public class MainPruebas {
 
     private static void addingToCart(Instrument type) {
         System.out.println("\nAdded to cart: " + type.getCode());
-        LOGGER.debug("InventoryService", "Stock before sale: " + "product (" + "units" + ")");
-        LOGGER.trace("CartManager", "Applying discount: -10%");
+        LOGGER.debug("InventoryService", "Stock before sale: "+ type.getCode() +" ("+ MUSIC_SHOP.getStock(type)+")");
+        LOGGER.trace("CartManager", "No discount applied");
     }
 
 
@@ -80,7 +87,7 @@ public class MainPruebas {
     }
 
 
-    private static void goToPayment(Instrument type, int amountPaid) {
+    private static void goToPayment(Instrument type, double amountPaid) {
 
         if(MUSIC_SHOP.getStock(type) == null){
             LOGGER.warn("OrderService", "No stock for required instrument");
@@ -92,7 +99,9 @@ public class MainPruebas {
         LOGGER.debug("PaymentService", "Calculated total: " + type.getPrice());
 
         if (amountPaid<type.getPrice()){
-            System.out.println("Payment for "+ type.getCode() +" rejected. Price: " + type.getPrice());
+            System.out.println("\n    !!! Payment for "+ type.getCode() +
+                    " rejected. Price: " + type.getPrice() +
+                    " Amount given: " + amountPaid);
             LOGGER.error("OrderService", "Payment rejected");
         } else {
             sale = type;

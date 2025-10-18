@@ -1,0 +1,6 @@
+[10] [2025-10-19_00-01-42_269] [DEBUG] [PaymentService]: Calculated total: 1200.0
+[11] [2025-10-19_00-01-42_270] [WARN] [InventoryService]: Stock low for: BASS. Less than three units left
+[12] [2025-10-19_00-01-42_272] [INFO] [InventoryService]: Restocked product: BASS
+[13] [2025-10-19_00-01-42_272] [DEBUG] [PaymentService]: Calculated total: 900.0
+[14] [2025-10-19_00-01-42_275] [ERROR] [OrderService]: Payment rejected
+[15] [2025-10-19_00-01-42_276] [DEBUG] [PaymentService]: Calculated total: 3100.0

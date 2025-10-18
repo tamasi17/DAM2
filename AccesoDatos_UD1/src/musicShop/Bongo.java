@@ -12,8 +12,7 @@ public class Bongo implements PercussionInstrument{
 
     public Bongo(String material) {
         this.material=material;
-        ++contador;
-        productID=contador;
+        productID=++contador;
     }
 
     @Override

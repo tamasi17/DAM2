@@ -1,0 +1,6 @@
+[7] [2025-10-19_00-02-45_469] [FATAL] [SystemCore]: Unhandled exception in main thread — terminating application
+[8] [2025-10-19_00-02-45_469] [DEBUG] [InventoryService]: Stock before sale: BASS (2)
+[9] [2025-10-19_00-02-45_470] [TRACE] [CartManager]: No discount applied
+[10] [2025-10-19_00-02-45_470] [DEBUG] [PaymentService]: Calculated total: 1200.0
+[11] [2025-10-19_00-02-45_471] [WARN] [InventoryService]: Stock low for: BASS. Less than three units left
+[12] [2025-10-19_00-02-45_473] [INFO] [InventoryService]: Restocked product: BASS

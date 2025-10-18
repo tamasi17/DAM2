@@ -15,8 +15,7 @@ public class Bass implements StringInstrument{
     public Bass(String brand, boolean electric) {
         this.brand=brand;
         this.electric=electric;
-        ++contador;
-        productID=contador;
+        productID=++contador;
     }
 
     @Override

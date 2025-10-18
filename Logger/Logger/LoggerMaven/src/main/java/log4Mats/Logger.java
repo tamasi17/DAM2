@@ -30,7 +30,7 @@ public class Logger {
     private File log;
     private final long maxSize;
     private static int logCounter = 1;
-
+    private boolean logToConsole = false;
 
     // Date/time format needs to be Windows-friendly.
     // Program runs really fast, had to add milliseconds to the log naming.
@@ -119,7 +119,15 @@ public class Logger {
         }
     }
 
-
+    /**
+     * Method that writes a log to the file indicated in the client configuration.
+     * Can be shown in console if logToConsole is true.
+     * @see #logToConsole
+     * @param level that defines the priority of the log
+     * @param source to be changed to the class where the log comes from !!!!
+     * @param message describing the reason for logging
+     * @return
+     */
     public int log(LogLevel level, String source, String message) {
 
         confirmLogExists();
@@ -127,12 +135,13 @@ public class Logger {
 
         String time = LocalDateTime.now().format(FORMATTER);
 
-        // uncomment to check
-        //System.out.println(time + "[" + level + "]: " + source + " - " + message);
+        if (logToConsole) {
+            System.out.println("["+ time +"] ["+ level +"] ["+ source +"]: "+ message);
+        }
 
         // new FileWriter(log, true) to write at the end
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(log, true))) {
-            bw.write("["+ logCounter +"] ["+ time +"] ["+ level +"] ["+ source +"]: "+ message +"\n");
+            bw.write("[" + logCounter + "] [" + time + "] [" + level + "] [" + source + "]: " + message + "\n");
         } catch (IOException ioe) {
             System.err.println("Error in I/O while logging");
         }
@@ -220,9 +229,6 @@ public class Logger {
         }
     }
 
-    public void getLogLevel() {
-        System.out.println(configLevel);
-    }
 
     private void confirmLogExists() {
         if (!this.log.exists()) {
@@ -245,5 +251,20 @@ public class Logger {
         }
     }
 
+    public void getLogLevel() {
+        System.out.println(configLevel);
+    }
+
+    public boolean isLogToConsole() {
+        return logToConsole;
+    }
+
+    /**
+     * Set to true to show logs in your console
+     * @param logToConsole
+     */
+    public void setLogToConsole(boolean logToConsole) {
+        this.logToConsole = logToConsole;
+    }
 }
 

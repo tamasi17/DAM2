@@ -1,0 +1,7 @@
+[13] [2025-10-18_23-55-38_002] [DEBUG] [PaymentService]: Calculated total: 900.0
+[14] [2025-10-18_23-55-38_004] [ERROR] [OrderService]: Payment rejected
+[15] [2025-10-18_23-55-38_004] [DEBUG] [PaymentService]: Calculated total: 3100.0
+[16] [2025-10-18_23-55-38_006] [INFO] [Application]: Shop closed at 11:55 p. m.
+[1] [2025-10-19_00-01-42_259] [INFO] [Application]: Shop opened at 12:01 a. m.
+[2] [2025-10-19_00-01-42_260] [TRACE] [ProductService]: Fetching product details...
+[3] [2025-10-19_00-01-42_261] [DEBUG] [InventoryService]: Stock before sale: GUIT (7)

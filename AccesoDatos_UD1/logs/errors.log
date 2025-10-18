@@ -1,0 +1,4 @@
+[13] [2025-10-19_00-02-45_474] [DEBUG] [PaymentService]: Calculated total: 900.0
+[14] [2025-10-19_00-02-45_479] [ERROR] [OrderService]: Payment rejected
+[15] [2025-10-19_00-02-45_480] [DEBUG] [PaymentService]: Calculated total: 3100.0
+[16] [2025-10-19_00-02-45_482] [INFO] [Application]: Shop closed at 12:02 a. m.

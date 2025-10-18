@@ -14,8 +14,7 @@ public class DrumSet implements PercussionInstrument{
     public DrumSet(String brand, int pieces) {
         this.brand=brand;
         this.pieces=pieces;
-        ++contador;
-        productID=contador;
+        productID=++contador;
     }
 
     @Override

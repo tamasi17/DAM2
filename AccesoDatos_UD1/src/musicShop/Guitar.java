@@ -15,8 +15,7 @@ public class Guitar implements StringInstrument{
     public Guitar(String brand, boolean electric) {
         this.brand=brand;
         this.electric=electric;
-        ++contador;
-        productID=contador;
+        productID=++contador;
     }
 
     @Override
