@@ -2,7 +2,7 @@ package log4Mats;
 
 public enum LogLevel {
 
-    // Enums por prioridades:
+    // Log levels, ordered by priority.
     TRACE(0),
     DEBUG(1),
     INFO(2),
@@ -20,7 +20,7 @@ public enum LogLevel {
         return priority;
     }
 
-    // Confirma si el mensaje se tiene que guardar en los logs o no
+    // Confirms if the message has to be logged or not, depending on the priority set in the config file.
     public boolean isLoggable(LogLevel configLevel){
         return this.priority >= configLevel.priority;
     }

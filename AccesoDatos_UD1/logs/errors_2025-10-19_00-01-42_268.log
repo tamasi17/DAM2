@@ -1,6 +1,0 @@
-[4] [2025-10-19_00-01-42_263] [TRACE] [CartManager]: No discount applied
-[5] [2025-10-19_00-01-42_265] [DEBUG] [PaymentService]: Calculated total: 900.0
-[6] [2025-10-19_00-01-42_266] [FATAL] [Application]: Configuration file 'app.properties' not found - aborting startup
-[7] [2025-10-19_00-01-42_267] [FATAL] [SystemCore]: Unhandled exception in main thread — terminating application
-[8] [2025-10-19_00-01-42_267] [DEBUG] [InventoryService]: Stock before sale: BASS (2)
-[9] [2025-10-19_00-01-42_268] [TRACE] [CartManager]: No discount applied

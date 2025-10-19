@@ -21,7 +21,7 @@ public class LogManager {
     /**
      *  Returns a Logger through Logger.getInstance() following Singleton design
      * @param xml to be DOM Parsed for configuration
-     * @return
+     * @return a logger instance
      */
     public static Logger getLogger(File xml){
         Logger logger = null;
@@ -33,6 +33,11 @@ public class LogManager {
         return logger;
     }
 
+    /**
+     *  Returns a Logger through Logger.getInstance(LogConfig) following Singleton design
+     * @param json to be Data Bound for configuration using Jackson
+     * @return a logger instance
+     */
     public static Logger getLoggerFromJson(File json){
         Logger logger = null;
         try{
@@ -44,6 +49,11 @@ public class LogManager {
         return logger;
     }
 
+    /**
+     * Loads the configuration from a Json file through Jackson's ObjectMapper
+     * @param json
+     * @return a LogConfig object
+     */
     public static LogConfig loadFromJson(File json){
 
         ObjectMapper mapper = new ObjectMapper();

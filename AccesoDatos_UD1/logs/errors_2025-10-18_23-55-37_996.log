@@ -1,6 +1,0 @@
-[1] [2025-10-18_23-55-37_991] [INFO] [Application]: Shop opened at 11:55 p. m.
-[2] [2025-10-18_23-55-37_991] [TRACE] [ProductService]: Fetching product details...
-[3] [2025-10-18_23-55-37_992] [DEBUG] [InventoryService]: Stock before sale: GUIT (7)
-[4] [2025-10-18_23-55-37_992] [TRACE] [CartManager]: Applying discount: -10%
-[5] [2025-10-18_23-55-37_994] [DEBUG] [PaymentService]: Calculated total: 900.0
-[6] [2025-10-18_23-55-37_995] [FATAL] [Application]: Configuration file 'app.properties' not found - aborting startup

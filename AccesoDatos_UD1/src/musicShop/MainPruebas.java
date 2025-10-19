@@ -10,12 +10,12 @@ import java.time.format.DateTimeFormatter;
 public class MainPruebas {
 
     // XML
-    private static final File XML = new File("config\\configlog.xml");
-    private static final Logger LOGGER = LogManager.getLogger(XML);
+//    private static final File XML = new File("config\\configlog.xml");
+//    private static final Logger LOGGER = LogManager.getLogger(XML);
 
     // JSON
-//    private static final File JSON = new File("config\\logConfig.json");
-//    private static final Logger LOGGER = LogManager.getLoggerFromJson(JSON);
+    private static final File JSON = new File("config\\logConfig.json");
+    private static final Logger LOGGER = LogManager.getLoggerFromJson(JSON);
 
     private static final Shop MUSIC_SHOP = new Shop(7,2, 3,6);
     static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("hh:mm a");

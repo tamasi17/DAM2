@@ -14,9 +14,9 @@ import java.time.format.DateTimeFormatter;
 
 /**
  * Clase que define un logger por nivel de prioridad de errores:
- * Trace, Debug, Info, Warn, Error. (de menor a mayor prioridad)
- * <p>
- * Los logs se guardan en .../logs/nombreTienda.log y cuando se llenan se rota fichero.
+ * Trace, Debug, Info, Warn, Error, Fatal. (de menor a mayor prioridad).
+ * Los logs se guardan en la ruta que nos proporciona el XML o JSON de configuracion.
+ * Cuando se llega a maxSize (bytes) se rota fichero.
  */
 
 
@@ -122,6 +122,7 @@ public class Logger {
     /**
      * Method that writes a log to the file indicated in the client configuration.
      * Can be shown in console if logToConsole is true.
+     *
      * @see #logToConsole
      * @param level that defines the priority of the log
      * @param source to be changed to the class where the log comes from !!!!
@@ -149,7 +150,13 @@ public class Logger {
         return ++logCounter;
     }
 
-    void rotateLogIfNeeded(File oldLog) {
+    /**
+     * Method that receives the current log and rotates it if it has reached maxSize.
+     * Rotated logs are kept with a new name including a time stamp.
+     * Future updates: compress logs when they reach a certain number.
+     * @param currentLog
+     */
+    void rotateLogIfNeeded(File currentLog) {
 
         long size = log.length();
         if (size < maxSize) return;
@@ -229,7 +236,9 @@ public class Logger {
         }
     }
 
-
+    /**
+     * Method that ensures a log exists, used before operating with it.
+     */
     private void confirmLogExists() {
         if (!this.log.exists()) {
             try {
@@ -251,16 +260,23 @@ public class Logger {
         }
     }
 
+    /**
+     * Log level priority getter.
+     */
     public void getLogLevel() {
         System.out.println(configLevel);
     }
 
+    /**
+     * If true, shows log in the client console.
+     * @return
+     */
     public boolean isLogToConsole() {
         return logToConsole;
     }
 
     /**
-     * Set to true to show logs in your console
+     * Set to true to show logs in client console.
      * @param logToConsole
      */
     public void setLogToConsole(boolean logToConsole) {

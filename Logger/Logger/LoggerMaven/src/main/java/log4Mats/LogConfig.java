@@ -1,5 +1,10 @@
 package log4Mats;
 
+/**
+ * Class that defines a structure for a Json to be Data Bound using Jackson.
+ * Handles the logger configuration, receiving the info from a Json file.
+ */
+
 public class LogConfig {
 
     private String status;
@@ -10,7 +15,6 @@ public class LogConfig {
 
     /**
      *  Jackson needs an empty constructor
-     *
       */
     public LogConfig(){}
 
