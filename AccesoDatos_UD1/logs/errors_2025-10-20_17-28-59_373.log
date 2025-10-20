@@ -1,0 +1,12 @@
+[1] [2025-10-20_17-28-59_356] [INFO] [Application]: Shop opened at 05:28 p. m.
+[2] [2025-10-20_17-28-59_358] [DEBUG] [InventoryService]: Stock before sale: GUIT (7)
+[3] [2025-10-20_17-28-59_359] [DEBUG] [PaymentService]: Calculated total: 900.0
+[4] [2025-10-20_17-28-59_360] [FATAL] [Application]: Configuration file 'app.properties' not found - aborting startup
+[5] [2025-10-20_17-28-59_361] [FATAL] [SystemCore]: Unhandled exception in main thread — terminating application
+[6] [2025-10-20_17-28-59_361] [DEBUG] [InventoryService]: Stock before sale: BASS (2)
+[7] [2025-10-20_17-28-59_361] [DEBUG] [PaymentService]: Calculated total: 1200.0
+[8] [2025-10-20_17-28-59_362] [WARN] [InventoryService]: Stock low for: BASS. Less than three units left
+[9] [2025-10-20_17-28-59_366] [INFO] [InventoryService]: Restocked product: BASS
+[10] [2025-10-20_17-28-59_366] [DEBUG] [PaymentService]: Calculated total: 900.0
+[11] [2025-10-20_17-28-59_371] [ERROR] [OrderService]: Payment rejected
+[12] [2025-10-20_17-28-59_372] [DEBUG] [PaymentService]: Calculated total: 3100.0
