@@ -20,7 +20,7 @@ public class Ej12_EjecutorComandos {
         String comando = sc.nextLine().trim();
         while (!comando.equals("salir")) {
 
-            // comando.split(" ") para dividir con espacios los comandos
+            // comando.split(" ") para dividir con espacios los comandos, devuelve String[]
             ProcessBuilder pb = new ProcessBuilder(comando.split(" "));
             pb.redirectErrorStream(true);
 

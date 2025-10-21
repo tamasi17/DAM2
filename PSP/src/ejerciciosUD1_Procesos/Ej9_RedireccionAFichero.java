@@ -15,7 +15,7 @@ public class Ej9_RedireccionAFichero {
 
         try{
             ProcessBuilder processBuilder = new ProcessBuilder("ipconfig");
-            File fichero = new File("ej9_RedireccionAFichero.txt");
+            File fichero = new File("ficheros/ej9_RedireccionAFichero.txt");
             processBuilder.redirectOutput(fichero);
             Process process = processBuilder.start();
 

@@ -27,9 +27,9 @@ Adaptador de LAN inal mbrica Local Area Connection* 2:
 Adaptador de LAN inal mbrica WiFi:
 
    Sufijo DNS espec¡fico para la conexi¢n. . : 
-   Direcci¢n IPv4. . . . . . . . . . . . . . : 192.168.171.89
+   Direcci¢n IPv4. . . . . . . . . . . . . . : 10.211.117.89
    M scara de subred . . . . . . . . . . . . : 255.255.255.0
-   Puerta de enlace predeterminada . . . . . : 192.168.171.166
+   Puerta de enlace predeterminada . . . . . : 10.211.117.91
 
 Adaptador de Ethernet Bluetooth Network Connection:
 
