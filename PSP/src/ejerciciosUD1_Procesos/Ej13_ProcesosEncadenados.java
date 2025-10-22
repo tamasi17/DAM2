@@ -1,28 +1,61 @@
 package ejerciciosUD1_Procesos;
 
+import java.io.*;
+import java.util.concurrent.TimeUnit;
+
 public class Ej13_ProcesosEncadenados {
-    /*
-    Escribe un programa en Java que simule una tubería de consola:
-    la salida de un proceso debe convertirse en la entrada de otro.
-     */
+
+    private static final long timeoutMS = 3000;
+
     static void main() {
 
-        // Confirmar si windows o linux para comando
+        ProcessBuilder pb1 = new ProcessBuilder("cmd", "/c", "echo Java && echo Procesos && echo Builder");
+        ProcessBuilder pb2 = new ProcessBuilder("sort");
 
-        /* En Windows, utiliza:
-        cmd /c "echo Java && echo Procesos && echo Builder"
-        En Linux/macOS, utiliza:
-        bash -c "echo Java; echo Procesos; echo Builder"
-        */
+        pb1.redirectErrorStream(true);
+        pb2.redirectErrorStream(true);
 
-        // ProcessBuilder pb = new ProcessBuilder()  EDITAR ESTO
+        Process process1 = null;
+        Process process2 = null;
 
-        // Lanzar el primer proceso y capturar su salida.
+        try {
+            process1 = pb1.start();
+            process2 = pb2.start();
+        } catch (IOException ioe) {
+            System.err.println("I/O error: " + ioe.getLocalizedMessage());
+        }
 
-        // Pasar esa salida como entrada al segundo proceso: sort.
 
-        // Leer la salida final del segundo proceso y mostrarla en la consola de Java con el prefijo Final:
+        try (InputStream in = process1.getInputStream(); OutputStream out = process2.getOutputStream()) {
+
+            in.transferTo(out);
+
+        } catch (IOException ioe) {
+            System.err.println("I/O error in transfer from p1 to p2: " + ioe.getLocalizedMessage());
+        }
+
+        try {
+            boolean fin = process1.waitFor(timeoutMS, TimeUnit.MILLISECONDS);
+            if (!fin) {
+                process1.destroy();
+            }
+
+        } catch (InterruptedException ie) {
+            System.err.println("Process 1 interrupted: " + ie.getLocalizedMessage());
+        }
+
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(process2.getInputStream()))) {
+            String linea = "";
+            while ((linea = br.readLine()) != null) {
+                System.out.println("Final: " + linea);
+            }
+
+        } catch (IOException ioe) {
+            System.err.println("I/O error reading p2 output: " + ioe.getLocalizedMessage());
+        }
 
 
     }
+
+
 }
