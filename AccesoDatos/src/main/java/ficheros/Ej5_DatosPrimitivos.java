@@ -39,19 +39,21 @@ public class Ej5_DatosPrimitivos {
     double nuevoDoble = 0;
     boolean nuevoBool = false;
 
-    /*
+
     try (DataInputStream dis = new DataInputStream(new FileInputStream(fichero))){
         while (true){
         nuevoEntero = dis.readInt();
         nuevoDoble = dis.readDouble();
         nuevoBool = dis.readBoolean();
         }
-    } catch (EOFException | IOException e){
+    } catch (EOFException e){
+        System.out.println(">> Fin de fichero alcanzado");
+    } catch (IOException e){
 
     }
-    */
 
-    // leer
+
+        // leer
 
     // gestion errores
 
