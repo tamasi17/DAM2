@@ -43,10 +43,24 @@ public class Ej1_ClaseFile {
     }
 
     private static void crearFichero(File fichero) {
-        fichero.getParentFile().mkdirs();
+
+        File dirPadre = fichero.getParentFile();
+
+        if (dirPadre != null && !dirPadre.exists()){
+            if (dirPadre.mkdirs()){
+                System.out.println("Directorios creados correctamente");
+            } else {
+                System.out.println("No se pudieron crear los directorios padre.");
+            }
+        }
 
         try {
-            fichero.createNewFile();
+
+            if (fichero.createNewFile()) {
+                System.out.println("Archivo creado correctamente");
+            } else {
+                System.out.println("El archivo ya existía");
+            }
         } catch (IOException ioe) {
             System.out.println("Error al crear el fichero.");
             System.err.println(ioe.getLocalizedMessage());
