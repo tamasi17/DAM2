@@ -20,7 +20,7 @@ public class Ej7_BuscarPalabra {
         File fichero = comprobarFichero(sc);
         String palabraBuscada = comprobarPalabra(sc);
         buscaPalabra(fichero, palabraBuscada);
-        // DEVUELVE LA LINEA EQUIVOCADA
+
 
         sc.close();
 
@@ -36,7 +36,7 @@ public class Ej7_BuscarPalabra {
 
         System.out.println("En qué fichero buscamos la palabra?");
         String nombreFichero = sc.nextLine().trim();
-        File fichero = new File("main.java.ficheros\\" + nombreFichero);
+        File fichero = new File("ficheros\\" + nombreFichero);
 
         while (!fichero.exists()) {
             System.out.println("No se ha encontrado el fichero. Escribe otra vez su nombre: ");
