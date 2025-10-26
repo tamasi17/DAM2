@@ -1,5 +1,11 @@
+package ficheros;
+
+import java.io.InputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 // Volcado hexadecimal de un fichero con FileInputStream
-package main.java.ficheros;
 /*
 Ahora un ejemplo con flujos binarios.
 El siguiente programa hace un volcado binario de un fichero indicado desde línea de comandos.
@@ -10,10 +16,6 @@ Por supuesto, este programa se puede utilizar tanto con main.java.ficheros binar
 Hacer notar que esta clase permite hacer el volcado binario de un InputStream, y un FileInputStream es un caso particular.
 Siempre que sea posible, debemos hacer que las clases que desarrollemos funcionen con streams en general, y no solo con main.java.ficheros en particular.
  */
-import java.io.InputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 /**
  * Clase que permite realizar un volcado binario (en formato hexadecimal) de un fichero.

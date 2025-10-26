@@ -1,15 +1,23 @@
-package main.java.ficheros;
-/*
-Como ejemplo, el siguiente programa muestra los contenidos de un fichero de texto línea a línea, numerando las líneas. Para leer líneas de texto se usa el método readLine() de la clase BufferedReader. En este programa, y en todos a partir de ahora, se utilizarán bloques try con recursos para crear distintos tipos de flujos (stream), con lo que close() se ejecutará automáticamente al final.
- */
-// Uso de readLine() de BufferedReader
+package ficheros;
+
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-// Esta clase lee un archivo de texto, numera cada línea y la imprime en la consola.
+
 public class EscribeConNumerosDeLineas {
+
+    /*
+Como ejemplo, el siguiente programa muestra los contenidos de un fichero de texto línea a línea,
+numerando las líneas.
+Para leer líneas de texto se usa el método readLine() de la clase BufferedReader.
+En este programa, y en todos a partir de ahora, se utilizarán bloques try con recursos
+para crear distintos tipos de flujos (stream), con lo que close() se ejecutará automáticamente al final.
+ */
+
+    // Uso de readLine() de BufferedReader
+// Esta clase lee un archivo de texto, numera cada línea y la imprime en la consola.
 
     public static void main(String[] args) {
         // Verifica que se haya pasado el nombre del archivo como argumento de línea de comandos.

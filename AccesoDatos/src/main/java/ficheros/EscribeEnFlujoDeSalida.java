@@ -1,15 +1,21 @@
-package main.java.ficheros;
+package ficheros;
 
-/*
-El siguiente programa escribe un texto en un fichero.
-Después lo cierra y lo vuelve a abrir en modo append para añadir nuevos contenidos al final. A menos que el fichero ya exista, en cuyo caso no hace nada. Si se hicieran estas mismas operaciones sobre un fichero existente, se perderían los contenidos del fichero. Se añaden saltos de línea con newLine().
- */
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.io.IOException;
 
 public class EscribeEnFlujoDeSalida {
+
+    /*
+El siguiente programa escribe un texto en un fichero.
+Después lo cierra y lo vuelve a abrir en modo append para añadir nuevos contenidos al final.
+A menos que el fichero ya exista, en cuyo caso no hace nada.
+Si se hicieran estas mismas operaciones sobre un fichero existente,
+se perderían los contenidos del fichero.
+Se añaden saltos de línea con newLine().
+ */
 
     public static void main(String[] args) {
         // Define el nombre del archivo de texto a manipular.

@@ -1,4 +1,14 @@
-package main.java.ficheros;
+package ficheros;
+
+import java.io.File;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+
 /*
 El siguiente programa realiza diversos cambios en los contenidos de un fichero de texto tales como eliminar secuencias de espacios al principio de línea,
 sustituir secuencias de espacios en otros lugares por un solo espacio, y hacer que todas las líneas empiecen por mayúsculas.
@@ -15,14 +25,7 @@ si se especifica un directorio distinto a aquel en que está ubicado el fichero.
 Es recomendable, y se puede ver que es muy sencillo, hacer que los programas realicen copias de seguridad de todos aquellos main.java.ficheros que vayan a modificar,
 al menos hasta que se hayan probado lo suficiente, después de lo cual se puede eliminar esta parte del programa.
  */
-import java.io.File;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Date;
-import java.text.SimpleDateFormat;
+
 
 /**
  * Clase que modifica un fichero de texto, corrigiendo su formato.

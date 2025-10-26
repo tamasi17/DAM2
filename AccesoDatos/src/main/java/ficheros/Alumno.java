@@ -1,4 +1,4 @@
-package main.java.ficheros;
+package ficheros;
 
 public class Alumno implements Comparable<Alumno> {
     private final String nombre;
