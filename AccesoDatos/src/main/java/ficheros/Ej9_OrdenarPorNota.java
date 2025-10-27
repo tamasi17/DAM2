@@ -3,14 +3,15 @@ package ficheros;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class Ej9_OrdenarPorNota {
 
     public static void main(String[] args) {
 
-    String origen = "estudiantes.txt";
-    String destino = "estudiantesOrdenados.txt";
-    File f = new File(origen);
+    String rutaOriginal = "ficheros/estudiantes.txt";
+    String rutaDestino = "ficheros/estudiantesOrdenados.txt";
+    File f = new File(rutaOriginal);
 
     if (!f.exists()){
         System.out.println("No encuentro el fichero.");
@@ -18,7 +19,7 @@ public class Ej9_OrdenarPorNota {
     }
 
     String linea="";
-    String[] palabras=null;
+    String[] alumnos=null;
 
     // Record Alumno(nota,int)
     Alumno alumno=null;
@@ -27,8 +28,8 @@ public class Ej9_OrdenarPorNota {
 
     try (BufferedReader br = new BufferedReader(new FileReader(f))){
         while ((linea=br.readLine()) != null && !linea.isEmpty()){
-            palabras=linea.split(",");
-            lista.add(new Alumno(palabras[0],Double.parseDouble(palabras[1])));
+            alumnos=linea.split(",");
+            lista.add(new Alumno(alumnos[0],Double.parseDouble(alumnos[1])));
         }
     } catch (EOFException e){
         System.err.println(e.getMessage());
@@ -42,7 +43,8 @@ public class Ej9_OrdenarPorNota {
             System.out.println(a.getNombre() + ", " + a.getNota());
         }
 
-        Collections.sort(lista);
+//        Collections.sort(lista);
+        lista.sort(Comparator.comparingDouble(Alumno::getNota).reversed());
 
         System.out.println("\nLista de alumnos ordenada: ");
         for (Alumno a : lista) {
