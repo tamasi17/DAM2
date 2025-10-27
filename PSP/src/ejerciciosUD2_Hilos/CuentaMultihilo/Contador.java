@@ -1,4 +1,4 @@
-package ejerciciosUD2_Hilos.CuentaCrateres;
+package ejerciciosUD2_Hilos.CuentaMultihilo;
 
 public class Contador extends Thread{
 
