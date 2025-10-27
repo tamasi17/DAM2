@@ -21,15 +21,6 @@ public class Ej8_EliminadorLineasVacias {
 
     }
 
-    private static void escribirComentarios(File comentariosSinLineas, String sinLineasVacias) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(comentariosSinLineas))) {
-
-            bw.write(sinLineasVacias);
-
-        } catch (IOException ioe) {
-            System.err.println("Error de E/S");
-        }
-    }
 
     private static File crearFichero() {
         File comentariosSinLineas = new File("ficheros/comentariosSinLineas.txt");
@@ -64,6 +55,15 @@ public class Ej8_EliminadorLineasVacias {
         return sinLineasVacias;
     }
 
+    private static void escribirComentarios(File comentariosSinLineas, String sinLineasVacias) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(comentariosSinLineas))) {
+
+            bw.write(sinLineasVacias);
+
+        } catch (IOException ioe) {
+            System.err.println("Error de E/S");
+        }
+    }
 
     private static void leerFichero(File fichero) {
         System.out.println("Leyendo desde fichero: " + fichero.getName());
