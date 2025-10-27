@@ -1,4 +1,4 @@
-package main.java.ficherosAleatorios;
+package ficherosAleatorios;
 
 import java.io.*;
 import java.time.Duration;
@@ -14,7 +14,7 @@ public class Ej1_SecuencialVsAleatorio {
 
         try (DataOutputStream dos = new DataOutputStream(new FileOutputStream(fichero))) {
             for (int i = 1; i < 10000000; i++) {
-                dos.write(i);
+                dos.writeInt(i);
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -26,9 +26,10 @@ public class Ej1_SecuencialVsAleatorio {
             boolean encontrado = false;
             while (!encontrado) {
                 int num = dis.readInt();
-                if (num == 5000000)
+                if (num == 5000000){
                     System.out.println("Number found sequentially: "+ num);
                     encontrado = true;
+                }
             }
         } catch (FileNotFoundException fnfe) {
             System.err.println("File not found: " + fnfe.getLocalizedMessage());
@@ -38,16 +39,16 @@ public class Ej1_SecuencialVsAleatorio {
 
         Instant after = Instant.now();
 
-        Duration duracion = Duration.between(before, after);
-        System.out.println("Sequentially took: " + duracion.getNano());
+        System.out.println("Sequential search duration: " +
+                Duration.between(before, after).toMillis());
 
 
         before = Instant.now();
 
         long pos = Integer.BYTES*5000000;
         try (RandomAccessFile raf = new RandomAccessFile(fichero, "r")){
-
-            if (pos<raf.length()){
+            System.out.println(raf.length());
+            if (pos+4<raf.length()){
                 raf.seek(pos);
                 int num = raf.readInt();
                 System.out.println("Random access found: "+ num);
@@ -61,8 +62,8 @@ public class Ej1_SecuencialVsAleatorio {
 
         after = Instant.now();
 
-        duracion = Duration.between(before, after);
-        System.out.println("Random access duration: " + duracion.getNano());
+        System.out.println("Random access duration: " +
+                Duration.between(before, after).toMillis());
 
     }
 }
