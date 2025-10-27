@@ -13,7 +13,7 @@ public class Ej1_SecuencialVsAleatorio {
         File fichero = new File(ruta);
 
         try (DataOutputStream dos = new DataOutputStream(new FileOutputStream(fichero))) {
-            for (int i = 1; i < 10000000; i++) {
+            for (int i = 1; i < 10000; i++) {
                 dos.writeInt(i);
             }
         } catch (IOException e) {
@@ -26,7 +26,7 @@ public class Ej1_SecuencialVsAleatorio {
             boolean encontrado = false;
             while (!encontrado) {
                 int num = dis.readInt();
-                if (num == 5000000){
+                if (num == 5000){
                     System.out.println("Number found sequentially: "+ num);
                     encontrado = true;
                 }
