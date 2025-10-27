@@ -1,4 +1,4 @@
-package ficheros;
+package ficherosSecuenciales;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,7 +19,7 @@ public class Ej1_ClaseFile {
      */
     static void main() {
 
-        File fichero = new File("ficheros/FicheroEjemplo.txt");
+        File fichero = new File("ficherosSecuenciales/FicheroEjemplo.txt");
 
         crearFichero(fichero);
         getInfo(fichero);

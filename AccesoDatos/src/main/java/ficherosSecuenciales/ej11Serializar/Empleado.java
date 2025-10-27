@@ -1,4 +1,4 @@
-package ficheros.ej11Serializar;
+package ficherosSecuenciales.ej11Serializar;
 
 import java.io.Serializable;
 
@@ -19,6 +19,6 @@ public class Empleado implements Serializable {
         return  nombre +
                 ": " + departamento +
                 " - " + salario +
-                " euros.\n";
+                " euros.";
     }
 }

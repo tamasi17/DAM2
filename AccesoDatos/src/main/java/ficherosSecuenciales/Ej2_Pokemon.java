@@ -1,4 +1,4 @@
-package ficheros;
+package ficherosSecuenciales;
 
 import java.io.*;
 
@@ -6,7 +6,7 @@ public class Ej2_Pokemon {
 
     static void main() {
 
-        File fichero = new File("ficheros/equipoPokemon.txt");
+        File fichero = new File("ficherosSecuenciales/equipoPokemon.txt");
 
         crearFichero(fichero);
 

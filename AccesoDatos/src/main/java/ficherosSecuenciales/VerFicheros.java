@@ -1,4 +1,4 @@
-package ficheros;
+package ficherosSecuenciales;
 
 import java.io.File;
 import java.text.SimpleDateFormat;

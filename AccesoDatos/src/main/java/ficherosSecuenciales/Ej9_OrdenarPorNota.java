@@ -1,16 +1,15 @@
-package ficheros;
+package ficherosSecuenciales;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 
 public class Ej9_OrdenarPorNota {
 
     public static void main(String[] args) {
 
-    String rutaOriginal = "ficheros/estudiantes.txt";
-    String rutaDestino = "ficheros/estudiantesOrdenados.txt";
+    String rutaOriginal = "ficherosSecuenciales/estudiantes.txt";
+    String rutaDestino = "ficherosSecuenciales/estudiantesOrdenados.txt";
     File f = new File(rutaOriginal);
 
     if (!f.exists()){

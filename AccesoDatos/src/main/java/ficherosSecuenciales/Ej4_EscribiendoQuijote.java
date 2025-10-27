@@ -1,4 +1,4 @@
-package ficheros;
+package ficherosSecuenciales;
 
 import java.io.*;
 
@@ -12,7 +12,7 @@ public class Ej4_EscribiendoQuijote {
     static void main() {
 
 
-    File fichero = new File("ficheros/Quijote.txt");
+    File fichero = new File("ficherosSecuenciales/Quijote.txt");
 
     crearFichero(fichero);
 

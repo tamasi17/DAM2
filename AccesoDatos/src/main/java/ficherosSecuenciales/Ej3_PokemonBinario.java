@@ -1,4 +1,4 @@
-package ficheros;
+package ficherosSecuenciales;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ public class Ej3_PokemonBinario {
 
     static void main() {
 
-        File fichero = new File("ficheros/equipoPokemon.bin");
+        File fichero = new File("ficherosSecuenciales/equipoPokemon.bin");
 
         crearFichero(fichero);
 

@@ -1,4 +1,4 @@
-package ficheros;
+package ficherosSecuenciales;
 
 import java.io.*;
 
@@ -9,7 +9,7 @@ public class Ej5_DatosPrimitivos {
 
 
     // ruta
-    String ruta="ficheros" + File.separator + "datos.bin";
+    String ruta= "ficherosSecuenciales" + File.separator + "datos.bin";
 
     File fichero = new File(ruta);
     if (fichero.exists()){

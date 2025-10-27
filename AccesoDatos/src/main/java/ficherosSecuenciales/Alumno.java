@@ -1,4 +1,4 @@
-package ficheros;
+package ficherosSecuenciales;
 
 public class Alumno implements Comparable<Alumno> {
     private final String nombre;

@@ -1,4 +1,4 @@
-package ficheros;
+package ficherosSecuenciales;
 
 import java.io.*;
 
@@ -23,7 +23,7 @@ public class Ej8_EliminadorLineasVacias {
 
 
     private static File crearFichero() {
-        File comentariosSinLineas = new File("ficheros/comentariosSinLineas.txt");
+        File comentariosSinLineas = new File("ficherosSecuenciales/comentariosSinLineas.txt");
 
         try {
             if (comentariosSinLineas.createNewFile()){
@@ -36,7 +36,7 @@ public class Ej8_EliminadorLineasVacias {
     }
 
     private static String leerComentarios() {
-        File comentarios = new File("ficheros/comentarios.txt");
+        File comentarios = new File("ficherosSecuenciales/comentarios.txt");
         String sinLineasVacias = "";
 
         try (BufferedReader br = new BufferedReader(new FileReader(comentarios))) {

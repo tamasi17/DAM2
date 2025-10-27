@@ -1,4 +1,4 @@
-package ficheros;
+package ficherosSecuenciales;
 
 import java.io.*;
 
@@ -14,9 +14,9 @@ apellidos.txt
 
     static void main() {
 
-        File fNombres = new File("ficheros/nombres.txt");
-        File fApellidos = new File("ficheros/apellidos.txt");
-        File mezclados = new File("ficheros/nombresMezclados.txt");
+        File fNombres = new File("ficherosSecuenciales/nombres.txt");
+        File fApellidos = new File("ficherosSecuenciales/apellidos.txt");
+        File mezclados = new File("ficherosSecuenciales/nombresMezclados.txt");
 
         if (!fNombres.exists() || !fApellidos.exists()) return;
 

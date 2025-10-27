@@ -1,10 +1,9 @@
-package ficheros;
+package ficherosSecuenciales;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class Ej6_ContarPalabras {
 
@@ -19,7 +18,7 @@ public class Ej6_ContarPalabras {
 
      */
 
-    private static final String RUTA = "ficheros/palabras.txt";
+    private static final String RUTA = "ficherosSecuenciales/palabras.txt";
 
     static void main() {
 

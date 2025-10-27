@@ -1,4 +1,4 @@
-package ficheros.ej11Serializar;
+package ficherosSecuenciales.ej11Serializar;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ public class Ej11_Serializar {
 
     static void main() {
 
-        File file = new File("ficheros/empleados.obj");
+        File file = new File("ficherosSecuenciales/empleados.obj");
 
         Empleado lau = new Empleado("Laura Martin", "Recursos Humanos", 27000);
         Empleado carlos = new Empleado("Carlos Pérez", "Contabilidad", 32000);
@@ -31,7 +31,7 @@ public class Ej11_Serializar {
                 oos.writeObject(empleado);
             }
 
-            System.out.println(">> Lista de empleados serializada correctamente");
+            System.out.println(">> Lista de empleados serializada correctamente. \n");
 
         } catch (FileNotFoundException fnfe) {
             System.err.println("File not found: " + fnfe.getLocalizedMessage());
@@ -41,28 +41,22 @@ public class Ej11_Serializar {
 
 
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
-            Empleado empleado = null;
-            while ((empleado = (Empleado) ois.readObject()) != null){
 
+            Empleado empleado = null;
+            while ((empleado = (Empleado) ois.readObject()) != null) {
+                System.out.println(empleado.toString());
             }
 
-                System.out.println(">> Lista de empleados leída:");
-
-
         } catch (EOFException eofe) {
-
+            System.out.println("\n>> Lista de empleados leída:");
 
         } catch (FileNotFoundException fnfe) {
             System.err.println("File not found when reading: " + fnfe.getLocalizedMessage());
         } catch (IOException ioe) {
             System.err.println("I/O error while reading: " + ioe.getLocalizedMessage());
         } catch (ClassNotFoundException cnfe) {
-            System.err.println("Could not find the class: "+ cnfe.getLocalizedMessage());
+            System.err.println("Could not find the class: " + cnfe.getLocalizedMessage());
         }
-
-        /*
-
-         */
 
 
     }
