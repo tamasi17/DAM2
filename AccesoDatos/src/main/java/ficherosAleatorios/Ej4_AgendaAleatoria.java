@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.Scanner;
 
 public class Ej4_AgendaAleatoria {
 
@@ -18,19 +19,38 @@ public class Ej4_AgendaAleatoria {
      */
 
     static int id = 0;
+    final static int NOMBRE_LEN = 20;
+    final static int OFFSET_ID = 0;
+    final static int OFFSET_NOMBRE = OFFSET_ID + 4;
+    final static int OFFSET_TELEFONO = OFFSET_NOMBRE + (NOMBRE_LEN * 2);
+    final static int BYTES_REGISTRO = OFFSET_TELEFONO + 8;
 
-    static void main() {
-
+    private static class Contacto {
+        int id;
         String nombre;
         long telefono;
 
+        public Contacto(int id, String nombre, long telefono) {
+            this.id = id;
+            this.nombre = nombre;
+            this.telefono = telefono;
+        }
+
+        @Override
+        public String toString() {
+            return id + ": " + nombre + ", " + telefono;
+        }
+    }
+
+
+    static void main() {
+
+        try (Scanner sc = new Scanner(System.in)) {
+
+
+        }
+
         File file = new File("ficheros/agenda.dat");
-
-
-        //      FALTAN OFFSETS DE CADA ENTRADA DEL REGISTRO, NO PUEDE LEER !!!!!
-
-
-
         try {
             if (file.createNewFile()) {
                 System.out.println("Agenda creada correctamente");
@@ -39,7 +59,11 @@ public class Ej4_AgendaAleatoria {
             System.err.println("No se pudo crear la agenda: " + ioe.getLocalizedMessage());
         }
 
-        try (RandomAccessFile raf = new RandomAccessFile(file,"rw")){
+
+        //      FALTAN OFFSETS DE CADA ENTRADA DEL REGISTRO, NO PUEDE LEER !!!!!
+
+
+        try (RandomAccessFile raf = new RandomAccessFile(file, "rw")) {
 
             writeContact(raf, "Peter", 484876523);
             writeContact(raf, "Mary Jane", 877636524);
@@ -50,63 +74,71 @@ public class Ej4_AgendaAleatoria {
 
 
         } catch (FileNotFoundException fnfe) {
-            System.err.println("File not found: "+ fnfe.getLocalizedMessage());
-        } catch (IOException ioe) {
-            System.err.println("I/O error when handling rf file: "+ ioe.getLocalizedMessage());
-        }
-
-
-    }
-
-    private static void readAllContacts(RandomAccessFile raf) throws IOException {
-        long telefono;
-        long pos = 0;
-        raf.seek(pos);
-        long registro = 52;
-
-        while (pos< raf.length()) {
-            id = raf.readInt();
-
-            char[] nombreChars = new char[20];
-            for (int i = 0; i < 20; i++) {
-                nombreChars[i]= raf.readChar();
-            }
-
-            telefono = raf.readLong();
-
-            System.out.println(id +": "+ nombreChars.toString() + ", "+ telefono);
-            pos+=registro;
-        }
-    }
-
-    private static void writeContact(RandomAccessFile raf, String nombre, long telefono) {
-
-        try {
-            //Writing at the end of the file
-            raf.seek(raf.length());
-
-            // int: 4 bytes
-            id++;
-            raf.writeInt(id);
-
-            // char[]: 40 bytes
-            StringBuilder sb = new StringBuilder(nombre);
-            if (sb.length() < 20) sb.append(' ');
-            if (sb.length() > 20) sb.setLength(20);
-
-            raf.writeChars(sb.toString());
-
-            // long: 8 bytes
-            raf.writeLong(telefono);
-
-            // Total registro: 52 bytes
-
-            System.out.println(id + " - Contact added: " + nombre);
-        } catch (FileNotFoundException fnfe) {
             System.err.println("File not found: " + fnfe.getLocalizedMessage());
         } catch (IOException ioe) {
-            System.err.println("I/O error when accessing raf: " + ioe.getLocalizedMessage());
+            System.err.println("I/O error when handling rf file: " + ioe.getLocalizedMessage());
         }
+
+
     }
+
+    private static Contacto readContact(RandomAccessFile raf, int indice) throws IOException {
+        long total = raf.length() / BYTES_REGISTRO;
+        if (!indiceValido(total, indice)) return null;
+
+        raf.seek(posicionRegistro(indice) + OFFSET_ID);
+        int id = raf.readInt();
+
+        StringBuilder nombre = new StringBuilder(NOMBRE_LEN);
+        for (int i = 0; i < NOMBRE_LEN; i++) {
+            char c = raf.readChar();
+            if (c != 0) nombre.append(c);
+        }
+
+        long telefono = raf.readLong();
+
+        return new Contacto(id, nombre.toString().trim(), telefono);
+    }
+}
+
+private static boolean indiceValido(long total, int indice) {
+    return indice >= 0 && indice < total;
+}
+
+private static long posicionRegistro(int indice) {
+    return (long) indice * BYTES_REGISTRO;
+}
+
+private static void writeContact(RandomAccessFile raf, int indice, Contacto c) throws IOException {
+
+    try {
+        //Writing at the chosen record
+        long pos = (long) indice * BYTES_REGISTRO;
+        raf.seek(pos + OFFSET_ID);
+
+
+        // int: 4 bytes
+        raf.writeInt(c.id);
+
+        // char[]: 40 bytes
+        StringBuilder sb = new StringBuilder(c.nombre != null ? c.nombre : "");
+        while (sb.length() < NOMBRE_LEN) sb.append(' ');
+        if (sb.length() > NOMBRE_LEN) sb.setLength(NOMBRE_LEN);
+        for (int i = 0; i < NOMBRE_LEN; i++) {
+            raf.writeChar(sb.charAt(i));
+        }
+
+        // long: 8 bytes
+        raf.writeLong(c.telefono);
+
+        // Total registro: 52 bytes
+
+        System.out.println(id + " - Contact added: " + c.nombre);
+    } catch (FileNotFoundException fnfe) {
+        System.err.println("File not found: " + fnfe.getLocalizedMessage());
+    } catch (IOException ioe) {
+        System.err.println("I/O error when accessing raf: " + ioe.getLocalizedMessage());
+    }
+}
 
 }
