@@ -21,7 +21,6 @@ public class Contador extends Thread{
         }
     }
 
-
     @Override
     public void run() {
         for (int i = x; i <= y; i++) {
