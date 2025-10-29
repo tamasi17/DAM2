@@ -10,11 +10,13 @@ public class Filosofo implements Runnable {
 
     private final Palillo palilloIzquierdo;
     private final Palillo palilloDerecho;
+    private int id;
     static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
-    Filosofo(Palillo left, Palillo right) {
+    Filosofo(Palillo left, Palillo right, int id) {
         this.palilloIzquierdo = left;
         this.palilloDerecho = right;
+        this.id = id;
     }
 
     private void doAction(String action) throws InterruptedException {
@@ -30,11 +32,14 @@ public class Filosofo implements Runnable {
             while (true) {
 
                 doAction(LocalTime.now().format(formatter) + ": Pensando. Mis palillos son el "+  palilloIzquierdo.getNumeroPalillo()+" y el "+ +  palilloDerecho.getNumeroPalillo());
+                synchronized (palilloIzquierdo){
+
                 doAction(LocalTime.now().format(formatter) + ": Coge el palillo izquierdo, palillo: "+  palilloIzquierdo.getNumeroPalillo());
                 doAction(LocalTime.now().format(formatter) + ": Coge el palillo derecho, palillo: "+  palilloDerecho.getNumeroPalillo());
     			doAction(LocalTime.now().format(formatter)+ ":  Comiendo");
                 doAction(LocalTime.now().format(formatter) + ": Deja el palillo derecho, palillo: "+  palilloDerecho.getNumeroPalillo());
                 doAction(LocalTime.now().format(formatter) + ": Deja el palillo izquierdo:"+  palilloIzquierdo.getNumeroPalillo());
+                }
     			doAction(LocalTime.now().format(formatter)+ ":  Pensando");
 
             }

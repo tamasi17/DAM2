@@ -5,24 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c41453a9-afd6-40cc-82e9-a6baca3d08c6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../PSP/UD2/UD2.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../PSP/UD2/src/ejerciciosud2/ejercicio18/reto/CenaFilosofosMati.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PSP/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../PSP/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PSP_UD2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../PSP/PSP_UD2/PSP_UD2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ejerciciosud2/ejercicio16/CuentaPares.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PSP/UD2/src/ejerciciosud2/ejercicio16/CuentaPares.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ejerciciosud2/ejercicio17/Deadlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PSP/UD2/src/ejerciciosud2/ejercicio17/Deadlock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ejerciciosud2/ejercicio18/reto/CenaFilosofos.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PSP/UD2/src/ejerciciosud2/ejercicio18/reto/CenaFilosofos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ejerciciosud2/ejercicio18/reto/Filosofo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PSP/UD2/src/ejerciciosud2/ejercicio18/reto/Filosofo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ejerciciosud2/ejercicio18/reto/Palillo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PSP/UD2/src/ejerciciosud2/ejercicio18/reto/Palillo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ejerciciosud2/ejercicio19/reto/Cuenta.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PSP/UD2/src/ejerciciosud2/ejercicio19/reto/Cuenta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ejerciciosud2/ejercicio19/reto/GestorTransferencias.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PSP/UD2/src/ejerciciosud2/ejercicio19/reto/GestorTransferencias.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ejerciciosud2/ejercicio19/reto/Hilo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PSP/UD2/src/ejerciciosud2/ejercicio19/reto/Hilo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ejerciciosud2/ejercicio19/reto/TransferenciaDeadlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PSP/UD2/src/ejerciciosud2/ejercicio19/reto/TransferenciaDeadlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PSP/PSP.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../PSP/PSP.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PSP/UD2/src/ejerciciosud2/ejercicio18/reto/CenaFilosofosMati.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PSP/UD2/src/ejerciciosud2/ejercicio18/reto/CenaFilosofosMati.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PSP/UD2/src/ejerciciosud2/ejercicio18/reto/Filosofo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PSP/UD2/src/ejerciciosud2/ejercicio18/reto/Filosofo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PSP/out/production/PSP/ejerciciosUD2_Hilos/CuentaCrateres/Contador.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PSP/out/production/PSP/ejerciciosUD2_Hilos/CuentaCrateres/CuentaPares.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +32,31 @@
     "assignee": "tamasi17"
   }
 }]]></component>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="psp" />
+                    <option name="lastUsedInstant" value="1761764593" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="accesoDatos" />
+                    <option name="lastUsedInstant" value="1761764592" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$/.." />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
+  </component>
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
     "url": "https://github.com/tamasi17/DAM2.git",
@@ -95,7 +107,7 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "accesoDatos",
+    "git-widget-placeholder": "psp",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",

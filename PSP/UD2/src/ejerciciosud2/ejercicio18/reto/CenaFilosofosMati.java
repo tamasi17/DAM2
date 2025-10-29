@@ -2,7 +2,7 @@ package ejerciciosud2.ejercicio18.reto;
 
 /*  @author:   */
 
-public class CenaFilosofos {
+public class CenaFilosofosMati {
 
 	public static void main(String[] args) throws Exception {
 
@@ -18,8 +18,7 @@ public class CenaFilosofos {
 			var palilloDerecho = palillos[i];
 			var palilloIzquierdo = palillos[(i + 1) % palillos.length];
 
-
-            filosofos[i] = new Filosofo(palilloIzquierdo, palilloDerecho);
+			filosofos[i] = new Filosofo(palilloIzquierdo, palilloDerecho, i);
 
 			Thread thread = new Thread(filosofos[i], "Filosofo " + (i + 1));
 			thread.start();

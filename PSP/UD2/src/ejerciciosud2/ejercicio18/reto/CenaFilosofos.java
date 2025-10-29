@@ -18,7 +18,9 @@ public class CenaFilosofos {
 			var palilloDerecho = palillos[i];
 			var palilloIzquierdo = palillos[(i + 1) % palillos.length];
 
-			filosofos[i] = new Filosofo(palilloIzquierdo, palilloDerecho);
+            // EN FUNCION DE i SABES QUE PALILLOS PUEDEN COGER
+
+			filosofos[i] = new Filosofo(palilloIzquierdo, palilloDerecho, i);
 
 			Thread thread = new Thread(filosofos[i], "Filosofo " + (i + 1));
 			thread.start();
