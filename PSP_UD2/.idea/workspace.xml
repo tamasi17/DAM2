@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c41453a9-afd6-40cc-82e9-a6baca3d08c6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../PSP/UD2/UD2.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../PSP/UD2/src/ejerciciosud2/ejercicio18/reto/CenaFilosofosMati.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PSP/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../PSP/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PSP_UD2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../PSP/PSP_UD2/PSP_UD2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ejerciciosud2/ejercicio16/CuentaPares.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PSP/UD2/src/ejerciciosud2/ejercicio16/CuentaPares.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ejerciciosud2/ejercicio17/Deadlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PSP/UD2/src/ejerciciosud2/ejercicio17/Deadlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ejerciciosud2/ejercicio18/reto/CenaFilosofos.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PSP/UD2/src/ejerciciosud2/ejercicio18/reto/CenaFilosofos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ejerciciosud2/ejercicio18/reto/Filosofo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PSP/UD2/src/ejerciciosud2/ejercicio18/reto/Filosofo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ejerciciosud2/ejercicio18/reto/Palillo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PSP/UD2/src/ejerciciosud2/ejercicio18/reto/Palillo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ejerciciosud2/ejercicio19/reto/Cuenta.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PSP/UD2/src/ejerciciosud2/ejercicio19/reto/Cuenta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ejerciciosud2/ejercicio19/reto/GestorTransferencias.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PSP/UD2/src/ejerciciosud2/ejercicio19/reto/GestorTransferencias.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ejerciciosud2/ejercicio19/reto/Hilo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PSP/UD2/src/ejerciciosud2/ejercicio19/reto/Hilo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ejerciciosud2/ejercicio19/reto/TransferenciaDeadlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PSP/UD2/src/ejerciciosud2/ejercicio19/reto/TransferenciaDeadlock.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "tamasi17"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/tamasi17/DAM2.git",
+    "accountId": "9c9ecf5a-9505-44dc-987c-9a2938c0d353"
+  }
+}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="33fP8aDEoJyutVZkxQmAi2K6YI1" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.CenaFilosofos.executor": "Run",
+    "Application.CuentaParesConcurrenteClasico.executor": "Run",
+    "Application.Deadlock.executor": "Run",
+    "Application.DeadlockSimple.executor": "Run",
+    "Application.DemoComparacionHilos.executor": "Run",
+    "Application.E2_Prioridades.executor": "Run",
+    "Application.Ej01_HiloThreadContar.executor": "Run",
+    "Application.Ej02_HiloRunnableMensaje.executor": "Run",
+    "Application.Ej02_HiloRunnableSaludo.executor": "Run",
+    "Application.Ej03_ClaseAnonimaPatron.executor": "Run",
+    "Application.Ej04_LambdaCuentaAtras.executor": "Run",
+    "Application.Ej05_EntremezclaSalidas.executor": "Run",
+    "Application.Ej06_EstadosBasicos.executor": "Run",
+    "Application.Ej07_JoinVarios.executor": "Run",
+    "Application.Ej07_TimedWaitingSondeo.executor": "Run",
+    "Application.Ej08_EstadosBasicos.executor": "Run",
+    "Application.Ej08_JoinVarios.executor": "Run",
+    "Application.Ej09_CompartidaVsLocal.executor": "Run",
+    "Application.Ej10_SeguimientoIsAlive.executor": "Run",
+    "Application.HilosCooperantesNoSincr.executor": "Run",
+    "Application.InterrupcionDeHilos.executor": "Run",
+    "Application.LanzaHilosYEsperaQueTerminen.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.ProductorConsumidorBQ.executor": "Run",
+    "Application.TransferenciaDeadlock.executor": "Run",
+    "Application.TransferenciaSinBloqueo.executor": "Run",
+    "Application.ejemplos.threads.filosofo.reto.CenaFilosofos.executor": "Run",
+    "Application.ejemplos.threads.filosofoPuente.reto.CenaFilosofos.executor": "Run",
+    "Application.ejemplos.threads.filosofoPuente.solucion.CenaFilosofos.executor": "Run",
+    "Application.ejerciciosud2.ejercicio1.Ej01_HiloThreadContar.executor": "Run",
+    "Application.productorconsumidor.ejemplobasicomultiplespc.Main.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "accesoDatos",
+    "ignore.virus.scanning.warn.message": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "E:/DAM2/PSP_UD2",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "D:/PROFESOR/_ISLASFILIPINAS_25-26/Programación Servicios y Procesos y  (PSP)/UD2/Ejercicios/workspace/PSP_UD2/src/Main.java",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Profesor\Desktop\psp\PSP_UD2\src\ejemplos\threads\hilos\interbloqueo\banca\reto" />
+      <recent name="C:\Users\Profesor\Desktop\psp\PSP_UD2\src\ejemplos\threads\hilos\interbloqueo" />
+      <recent name="C:\Users\Profesor\Desktop\psp\PSP_UD2\src\ejemplos\threads\filosofo" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Profesor\Desktop\psp\PSP_UD2\src\ejemplos\threads\filosofo\reto" />
+      <recent name="D:\PROFESOR\_ISLASFILIPINAS_25-26\Programación Servicios y Procesos y  (PSP)\UD2\Ejercicios\workspace\PSP_UD2\src\ejemplos\threads\filosofoPuente\reto" />
+      <recent name="D:\PROFESOR\_ISLASFILIPINAS_25-26\Programación Servicios y Procesos y  (PSP)\UD2\Ejercicios\workspace\PSP_UD2\src" />
+      <recent name="D:\PROFESOR\_ISLASFILIPINAS_25-26\Programación Servicios y Procesos y  (PSP)\UD2\Ejercicios\workspace\PSP_UD2\src\tareasclase" />
+      <recent name="D:\PROFESOR\_ISLASFILIPINAS_25-26\Programación Servicios y Procesos y  (PSP)\UD2\Ejercicios\workspace\PSP_UD2\src\ejemplos\threads" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ejemplos.threads.filosofoPuente" />
+      <recent name="ejemplos.threads.filosofoPuente.solucion" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.TransferenciaDeadlock">
+    <configuration name="Deadlock" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ejemplos.threads.hilos.interbloqueo.basico.Deadlock" />
+      <module name="PSP_UD2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ejemplos.threads.hilos.interbloqueo.basico.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TransferenciaDeadlock" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ejemplos.threads.hilos.interbloqueo.banca.reto.TransferenciaDeadlock" />
+      <module name="PSP_UD2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ejemplos.threads.hilos.interbloqueo.banca.reto.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TransferenciaSinBloqueo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ejemplos.threads.hilos.interbloqueo.banca.sol.TransferenciaSinBloqueo" />
+      <module name="PSP_UD2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ejemplos.threads.hilos.interbloqueo.banca.sol.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ejemplos.threads.filosofoPuente.solucion.CenaFilosofos" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ejemplos.threads.filosofoPuente.solucion.CenaFilosofos" />
+      <module name="PSP_UD2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ejemplos.threads.filosofoPuente.solucion.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ejemplos.threads.filosofo.reto.CenaFilosofos" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ejemplos.threads.filosofo.reto.CenaFilosofos" />
+      <module name="PSP_UD2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ejemplos.threads.filosofo.reto.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="GroovyScriptRunConfiguration" factoryName="Groovy">
+      <setting name="path" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workDir" value="file://$PROJECT_DIR$" />
+      <setting name="debug" value="false" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.TransferenciaDeadlock" />
+        <item itemvalue="Application.Deadlock" />
+        <item itemvalue="Application.TransferenciaSinBloqueo" />
+        <item itemvalue="Application.ejemplos.threads.filosofo.reto.CenaFilosofos" />
+        <item itemvalue="Application.ejemplos.threads.filosofoPuente.solucion.CenaFilosofos" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c41453a9-afd6-40cc-82e9-a6baca3d08c6" name="Changes" comment="" />
+      <created>1759704995972</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1759704995972</updated>
+      <workItem from="1759704996925" duration="8813000" />
+      <workItem from="1760362011587" duration="1134000" />
+      <workItem from="1760958787528" duration="28097000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/../PSP/PSP_UD2/src/productorconsumidor/ejemplobasico/Main.java</url>
+          <line>4</line>
+          <properties class="productorconsumidor.ejemplobasico.Main">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../PSP/PSP_UD2/src/ejemplos/threads/hilos/interbloqueo/banca/reto/TransferenciaDeadlock.java</url>
+          <line>15</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
