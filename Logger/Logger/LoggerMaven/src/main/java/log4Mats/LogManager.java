@@ -12,11 +12,6 @@ import java.io.IOException;
 
 public class LogManager {
 
-    private static Document createDocument(File xml) throws IOException, SAXException, ParserConfigurationException {
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = factory.newDocumentBuilder();
-        return builder.parse(xml);
-    }
 
     /**
      *  Returns a Logger through Logger.getInstance() following Singleton design
@@ -39,6 +34,7 @@ public class LogManager {
      * @return a logger instance
      */
     public static Logger getLoggerFromJson(File json){
+
         Logger logger = null;
         try{
             LogConfig config = loadFromJson(json);
@@ -47,6 +43,20 @@ public class LogManager {
             System.err.println("Problem retrieving a Logger instance with JSON");
         }
         return logger;
+    }
+
+    /**
+     * Calls DocumentBuilderFactory to parse an XML file
+     * @param xml
+     * @return Document with configuration info for the logger
+     * @throws IOException
+     * @throws SAXException
+     * @throws ParserConfigurationException
+     */
+    private static Document createDocument(File xml) throws IOException, SAXException, ParserConfigurationException {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        return builder.parse(xml);
     }
 
     /**

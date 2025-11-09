@@ -32,6 +32,9 @@ public class Logger {
     private static int logCounter = 1;
     private boolean logToConsole = false;
 
+    // StackWalker instance to get class source (requires Java 9+)
+    private static final StackWalker walker = StackWalker.getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE);
+
     // Date/time format needs to be Windows-friendly.
     // Program runs really fast, had to add milliseconds to the log naming.
     static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss_SSS");
@@ -76,7 +79,7 @@ public class Logger {
      * It is called from LogManager's getLogger(File xml).
      *
      * @param configXml
-     * @return
+     * @return Logger
      */
     public static Logger getInstance(Document configXml) {
         // Double-checked locking (DCL). Exists to prevent race condition between
@@ -100,7 +103,7 @@ public class Logger {
      * It is called from LogManager's getLoggerFromJson(File json).
      *
      * @param configJson Data binded from LogConfig configuration json
-     * @return
+     * @return Logger Singleton instance
      */
     public static Logger getInstance(LogConfig configJson) {
         // Double-checked locking (DCL). Exists to prevent race condition between
@@ -122,17 +125,18 @@ public class Logger {
     /**
      * Method that writes a log to the file indicated in the client configuration.
      * Can be shown in console if logToConsole is true.
+     * Source class comes from StackWalker (java +9)
      *
      * @see #logToConsole
      * @param level that defines the priority of the log
-     * @param source to be changed to the class where the log comes from !!!!
      * @param message describing the reason for logging
      * @return
      */
-    public int log(LogLevel level, String source, String message) {
+    public int log(LogLevel level, String message) {
 
         confirmLogExists();
-        rotateLogIfNeeded(log);
+        rotateLogIfNeeded();
+        String source = getCallerClass();
 
         String time = LocalDateTime.now().format(FORMATTER);
 
@@ -154,9 +158,9 @@ public class Logger {
      * Method that receives the current log and rotates it if it has reached maxSize.
      * Rotated logs are kept with a new name including a time stamp.
      * Future updates: compress logs when they reach a certain number.
-     * @param currentLog
+     *
      */
-    void rotateLogIfNeeded(File currentLog) {
+    void rotateLogIfNeeded() {
 
         long size = log.length();
         if (size < maxSize) return;
@@ -188,50 +192,59 @@ public class Logger {
     }
 
 
-    public void trace(String source, String message) {
+    String getCallerClass(){
+        return walker.walk(frames -> frames
+                .skip(1) // skip this log() method
+                .findFirst()
+                .map(f -> f.getClassName() + "." + f.getMethodName()) // class + method
+                .orElse("Unknown"));
+    }
+
+
+    public void trace(String message) {
         System.out.println("\n· Tracing...");
         if (LogLevel.TRACE.isLoggable(configLevel)) {
-            int logID = log(LogLevel.TRACE, source, message);
+            int logID = log(LogLevel.TRACE, message);
             System.out.println("Trace logged. ID:" + logID);
         }
     }
 
-    public void debug(String source, String message) {
+    public void debug(String message) {
         System.out.println("\n· Debug logging...");
         if (LogLevel.DEBUG.isLoggable(configLevel)) {
-            int logID = log(LogLevel.DEBUG, source, message);
+            int logID = log(LogLevel.DEBUG, message);
             System.out.println("Debug logged. ID:" + logID);
         }
     }
 
-    public void info(String source, String message) {
+    public void info(String message) {
         System.out.println("\n· Logger retrieving info...");
         if (LogLevel.INFO.isLoggable(configLevel)) {
-            int logID = log(LogLevel.INFO, source, message);
+            int logID = log(LogLevel.INFO, message);
             System.out.println("Info logged. ID:" + logID);
         }
     }
 
-    public void warn(String source, String message) {
+    public void warn(String message) {
         System.out.println("\n· Retrieving warnings...");
         if (LogLevel.WARN.isLoggable(configLevel)) {
-            int logID = log(LogLevel.WARN, source, message);
+            int logID = log(LogLevel.WARN, message);
             System.out.println("Warning logged. ID:" + logID);
         }
     }
 
-    public void error(String source, String message) {
+    public void error(String message) {
         System.out.println("\n· Logging error...");
         if (LogLevel.ERROR.isLoggable(configLevel)) {
-            int logID = log(LogLevel.ERROR, source, message);
+            int logID = log(LogLevel.ERROR, message);
             System.out.println("Error logged. ID:" + logID);
         }
     }
 
-    public void fatal(String source, String message) {
+    public void fatal(String message) {
         System.out.println("\n· Program is crashing...");
         if (LogLevel.FATAL.isLoggable(configLevel)) {
-            int logID = log(LogLevel.FATAL, source, message);
+            int logID = log(LogLevel.FATAL, message);
             System.out.println("Fatality logged. ID:" + logID);
         }
     }
