@@ -1,0 +1,5 @@
+log4Mats\LogConfig.class
+log4Mats\Logger.class
+log4Mats\LogLevel.class
+org\example\App.class
+log4Mats\LogManager.class

@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.lang.StackWalker;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -194,7 +195,7 @@ public class Logger {
 
     String getCallerClass(){
         return walker.walk(frames -> frames
-                .skip(1) // skip this log() method
+                .filter(frame -> !frame.getClassName().equals(Logger.class.getName()))
                 .findFirst()
                 .map(f -> f.getClassName() + "." + f.getMethodName()) // class + method
                 .orElse("Unknown"));
