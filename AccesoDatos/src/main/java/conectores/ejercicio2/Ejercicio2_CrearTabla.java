@@ -36,7 +36,7 @@ public class Ejercicio2_CrearTabla {
 
 
         } catch (SQLException sqle) {
-            System.err.println("Error insertando usuario: " + sqle.getLocalizedMessage());
+            System.err.println("Error creando tabla usuarios: " + sqle.getLocalizedMessage());
         }
     }
 }

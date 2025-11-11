@@ -3,7 +3,6 @@ package conectores.ejercicio4;
 
 import conectores.util.ConnectionFactory;
 import conectores.model.Usuario;
-
 import java.sql.*;
 import java.util.*;
 
