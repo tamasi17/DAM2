@@ -1,11 +1,15 @@
 package ejerciciosud2.ejercicio19.reto;
 
+
+import ejerciciosud2.ejercicio19.sol.Cuenta;
+
 class Hilo implements Runnable {
 
-    Cuenta cuenta1, cuenta2;
+    CuentaReto cuenta1;
+    CuentaReto cuenta2;
     String nomHilo;
 
-    Hilo(Cuenta c1, Cuenta c2, String nombreHilo) {
+    Hilo(CuentaReto c1, CuentaReto c2, String nombreHilo) {
         this.cuenta1 = c1;
         this.cuenta2 = c2;
         this.nomHilo = nombreHilo;

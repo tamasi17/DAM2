@@ -1,5 +1,7 @@
 package ejerciciosud2.ejercicio18.reto;
 
+import ejerciciosUD2_Hilos.reto.PalilloMati;
+
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.concurrent.ThreadLocalRandom;

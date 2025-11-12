@@ -1,6 +1,5 @@
 package ejerciciosud2.ejercicio18.reto;
 
-/*  @author:   */
 
 public class Palillo {
 	

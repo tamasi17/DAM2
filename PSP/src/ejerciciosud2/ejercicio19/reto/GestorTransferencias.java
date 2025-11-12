@@ -2,7 +2,7 @@ package ejerciciosud2.ejercicio19.reto;
 
 public class GestorTransferencias {
 
-  public static boolean transferencia(Cuenta cuenta1, Cuenta cuenta2, int cantidad) {
+  public static boolean transferencia(CuentaReto cuenta1, CuentaReto cuenta2, int cantidad) {
 
     boolean result = false;
 
