@@ -1,12 +1,15 @@
 package jdbc;
 
+import jdbc.simulacro.Dao;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
-public class DaoUser {
+public class DaoUser implements Dao<User> {
 
     private Connection connection;
 
@@ -25,32 +28,71 @@ public class DaoUser {
         try (PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)){
 
 
+            // **VALIDACIONES** antes del try: email es un valor unico, existe en la bbdd?
+
                 ps.setString(1,nombre);
                 ps.setString(2,email);
                 if (ps.executeUpdate() == 0){
                     throw new SQLException("No se ha insertado el usuario "+ nombre);
                 }
 
+                int id = 0;
                 ResultSet rs = ps.getGeneratedKeys();
                 if(rs.next()){
-                    rs.getInt(1);
+                    id = rs.getInt(1);
                 }
 
+                return id;
 
         } catch (SQLException sqle) {
             throw new SQLException(sqle);
         }
     }
 
-    public ArrayList<User> findAll() {
+    @Override
+    public User get(int id) {
+        return null;
+    }
+
+    @Override
+    public void insert(User entity) {
 
     }
 
-    findByPhone(int telefono){
+    @Override
+    public void insert(List<User> entity) {
 
     }
 
-    update(int id){
+    @Override
+    public void update(User entity) {
 
     }
+
+    @Override
+    public void deleteById(int id) {
+
+    }
+
+    @Override
+    public boolean exists(int id) {
+        return false;
+    }
+
+////    public ArrayList<User> findAll() {
+////
+////    }
+//
+//    @Override
+//    public List<User> findByAttributes(User filtro) {
+//        return List.of();
+//    }
+//
+////    findByPhone(int telefono){
+////
+////    }
+////
+////    update(int id){
+////
+////    }
 }

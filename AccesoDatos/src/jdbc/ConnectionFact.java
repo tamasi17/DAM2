@@ -12,7 +12,6 @@ public class ConnectionFact {
     static final String PASS = "root";
 
     static {
-        // Pool ?
         // DataSource
     }
 
