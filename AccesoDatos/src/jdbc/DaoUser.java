@@ -79,20 +79,17 @@ public class DaoUser implements Dao<User> {
         return false;
     }
 
-////    public ArrayList<User> findAll() {
-////
-////    }
-//
-//    @Override
-//    public List<User> findByAttributes(User filtro) {
-//        return List.of();
-//    }
-//
-////    findByPhone(int telefono){
-////
-////    }
-////
-////    update(int id){
-////
-////    }
+    public ArrayList<User> findAll() {
+
+        return null;
+    }
+
+    @Override
+    public List<User> findByAttributes(User filtro) {
+        return List.of();
+    }
+
+    public void update(int id){
+
+    }
 }
