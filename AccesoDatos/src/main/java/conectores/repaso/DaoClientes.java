@@ -78,36 +78,61 @@ public class DaoClientes implements Dao<Cliente> {
     @Override
     public boolean insertMany(List<Cliente> list) {
 
-        Connection connection = null;
 
-        try(connection = HikariFact.getConnectionHikari()){
+        try (Connection connection = HikariFact.getConnectionHikari()) { // try connection
 
-            connection.setAutoCommit(false);
+            // COMENZAMOS TRANSACCION, lo que este dentro del siguiente try estará incluido
             System.out.println("Empieza transaccion insertMany");
+            connection.setAutoCommit(false);
 
-            try(PreparedStatement ps = connection.prepareStatement(QUERY_INSERT)){
+            // try prepared statement
+            try (PreparedStatement ps = connection.prepareStatement(QUERY_INSERT, Statement.RETURN_GENERATED_KEYS)) {
 
+                // Recorremos clientes añadiendo al batch
                 for (Cliente cliente : list) {
+                    ps.setString(1, cliente.getNombre());
+                    ps.setDate(2, cliente.getFechaNac());
+                    ps.setDouble(3, cliente.getAltura());
 
-                ps.setString(1,);
+                    ps.addBatch();
                 }
 
+                // Ejecutamos batch (executeBatch!!!) y confirmamos filas afectadas
+                int[] rows = ps.executeBatch();
+                if (rows.length != list.size()) {
+                    throw new SQLException("Inserted rows mismatch");
+                }
 
-            } catch (SQLException sqle){
-                System.err.println("El statement salio rana "+ sqle.getLocalizedMessage());
+                // Recuperamos generated keys, atentos si no hay info para alguna fila!
+                try (ResultSet keys = ps.getGeneratedKeys()) {
+                    for (Cliente cliente : list) {
+                        if (!keys.next()) {
+                            throw new SQLException("Missing generated key for a row");
+                        }
+                        cliente.setIdCliente(keys.getInt(1));
+                    }
+                }
+
+                // Commiteamos el executeBatch
+                connection.commit();
+                return true;
+
+            } catch (SQLException sqle) { // si algo salio mal, rollback de la transacion
+
+                try { connection.rollback(); } catch (SQLException ignore) {} // rollback tambien puede fallar!
+                System.err.println("El statement salio rana " + sqle.getLocalizedMessage());
+
+            } finally {
+                connection.setAutoCommit(true); // HikariCP normalmente se ocupa de esto
+                System.out.println("Fin transaccion atomica insertMany");
             }
 
 
-
-
-
-        } catch (SQLException sqlee) {
-            System.err.println("Se conectó regu el hikari");
-        } finally {
-            System.out.println("Fin transaccion atomica insertMany");
-            connection.setAutoCommit(true);
+        } catch (SQLException sqle) {
+            System.err.println("Se conectó regu el hikari " + sqle.getLocalizedMessage());
         }
         return false;
+
     }
 
     @Override
