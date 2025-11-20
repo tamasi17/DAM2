@@ -1,5 +1,6 @@
 package jdbc;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -10,6 +11,8 @@ public class ConnectionFact {
             "&allowPublicKeyRetrieval=true";
     static final String USER = "root";
     static final String PASS = "root";
+
+    static DataSource ds;
 
     static {
         // DataSource
