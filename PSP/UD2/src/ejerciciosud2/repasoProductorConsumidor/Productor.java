@@ -9,6 +9,11 @@ public class Productor implements Runnable {
         this.cantidadManzanas = cantidadManzanas;
     }
 
+    public Productor(int cantidadManzanas, ContenedorSidra contenedor) {
+        this.cantidadManzanas = cantidadManzanas;
+        this.contenedor = contenedor;
+    }
+
     @Override
     public void run() {
 
