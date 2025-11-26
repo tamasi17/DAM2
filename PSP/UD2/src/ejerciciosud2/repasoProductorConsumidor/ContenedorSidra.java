@@ -21,11 +21,12 @@ public class ContenedorSidra {
 
         // si no, put cantidadManzanas
         cantidadManzanas += añadidas;
-        System.out.println(Thread.currentThread().getName() + ": he añadido " + añadidas + " manzanas.");
+        System.out.println(Thread.currentThread().getName() + ": he añadido "
+                + añadidas + " manzanas. Cantidad actual: "+ cantidadManzanas);
 
     }
 
-    public void take (int quitadas){
+    public synchronized void take (int quitadas){
         // si está vacio o hay menos que las que necesita cada marca, wait
         while ( (cantidadManzanas - quitadas) < 0){
             try {
@@ -37,7 +38,8 @@ public class ContenedorSidra {
 
         // si no, take cantidadManzanas
         cantidadManzanas -= quitadas;
-        System.out.println(Thread.currentThread().getName() + ": he quitado " + quitadas + " manzanas.");
+        System.out.println(Thread.currentThread().getName() + ": he quitado "
+                + quitadas + " manzanas. Cantidad actual: "+ cantidadManzanas);
         notifyAll();
 
     }

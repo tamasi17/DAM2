@@ -9,7 +9,7 @@ public class Productor implements Runnable {
         this.cantidadManzanas = cantidadManzanas;
     }
 
-    public Productor(int cantidadManzanas, ContenedorSidra contenedor) {
+    public Productor(ContenedorSidra contenedor, int cantidadManzanas) {
         this.cantidadManzanas = cantidadManzanas;
         this.contenedor = contenedor;
     }
@@ -17,8 +17,9 @@ public class Productor implements Runnable {
     @Override
     public void run() {
 
-        System.out.println("Poniendo manzanas");
         // aqui llama a put(cantidadManzanas)
+        contenedor.put(cantidadManzanas);
+        System.out.println(Thread.currentThread().getName()+ ": poniendo manzanas - "+ cantidadManzanas);
 
     }
 }

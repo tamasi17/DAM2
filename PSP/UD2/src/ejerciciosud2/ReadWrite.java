@@ -17,7 +17,7 @@ public class ReadWrite {
         Phaser phaser = new Phaser(1);
         for (int i = 0; i < 10; i++) {
             phaser.register();
-            THread(new Lectores).start();
+            // Thread(new Lectores).start();
         }
 
     }

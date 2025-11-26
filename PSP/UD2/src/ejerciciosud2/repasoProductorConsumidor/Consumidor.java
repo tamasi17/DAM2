@@ -13,8 +13,9 @@ public class Consumidor implements Runnable{
     @Override
     public void run() {
 
-        System.out.println("Cogiendo manzanas");
         // aqui llama a put(cantidadManzanas)
+        contenedor.take(cantidadManzanas);
+        System.out.println("Intentando coger manzanas "+ Thread.currentThread().getName());
 
     }
 }
