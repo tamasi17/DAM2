@@ -9,15 +9,18 @@ public class Cliente {
     String nombre;
     Date fechaNac;
     double altura;
+    boolean migrado;
 
     public Cliente() {
     }
+
 
     public Cliente(String nombre, Date fechaNac, double altura) {
         this.idCliente=0;
         this.nombre = nombre;
         this.fechaNac = fechaNac;
         this.altura = altura;
+        this.migrado = false;
     }
 
     public int getIdCliente() {
@@ -50,6 +53,14 @@ public class Cliente {
 
     public void setAltura(double altura) {
         this.altura = altura;
+    }
+
+    public boolean isMigrado() {
+        return migrado;
+    }
+
+    public void setMigrado(boolean migrado) {
+        this.migrado = migrado;
     }
 
     @Override

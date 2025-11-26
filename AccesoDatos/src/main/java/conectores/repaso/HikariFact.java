@@ -9,7 +9,8 @@ import java.sql.SQLException;
 
 public class HikariFact {
 
-    static final String URL = "jdbc:mysql://localhost:3307/repaso?useSSL=false&serverTimezone=UTC" +
+    // Confirmar 3306 0 3307
+    static final String URL = "jdbc:mysql://localhost:3306/repaso?useSSL=false&serverTimezone=UTC" +
             "&allowPublicKeyRetrieval=true";
     static final String USER = "root";
     static final String PASS = "root";
