@@ -12,13 +12,15 @@ public class MainHibernate {
 
             session.beginTransaction();
 
-            Estudiante estudiante = new Estudiante("Cebri", "1º DAM", "cebri@cebri.com");
+            Estudiante estudiante = new Estudiante("Cebri", "1DAM", "cebri@cebri.com");
+            Estudiante est2 = new Estudiante("Mati", "2DAM", "mats@mats.com");
 
             session.persist(estudiante);
+            session.persist(est2);
 
             session.getTransaction().commit();
 
-            System.out.println("Estudiante id: "+ estudiante.getId());
+            System.out.println("\nIDs: "+ estudiante.getId() +", " + est2.getId());
 
         } finally {
 
