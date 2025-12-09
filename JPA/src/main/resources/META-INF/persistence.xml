@@ -5,7 +5,7 @@
     <persistence-unit name="jpamysql" transaction-type="RESOURCE_LOCAL">
 
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <class>com.dam.Estudiante</class>
+        <class>com.dam.model.Estudiante</class>
 
             <properties>
                 <property name="jakarta.persistence.jdbc"

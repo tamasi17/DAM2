@@ -1,4 +1,4 @@
-package com.dam;
+package com.dam.model;
 
 import jakarta.persistence.*;
 

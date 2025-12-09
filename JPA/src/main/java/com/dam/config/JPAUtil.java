@@ -1,8 +1,7 @@
-package com.dam;
+package com.dam.config;
 
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-import org.hibernate.SessionFactory;
 
 public class JPAUtil {
 

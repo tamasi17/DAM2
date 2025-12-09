@@ -1,6 +1,7 @@
-package com.dam;
+package com.dam.app;
 
 import com.dam.config.JPAUtil;
+import com.dam.dao.EstudianteJPA;
 import com.dam.model.Estudiante;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -13,6 +14,8 @@ public class MainJPA {
 
         EntityManager em = emf.createEntityManager();
 
+        EstudianteJPA daoJpa = new EstudianteJPA(em);
+
         Estudiante estudiante1 = new Estudiante("Zibre", "Quiñon","zibre@zib.com", "2DAM");
         Estudiante estudiante2 = new Estudiante("Anne", "Atochero","atochero@ane.com", "1DAM");
 
@@ -21,8 +24,10 @@ public class MainJPA {
 
         em.getTransaction().begin();
 
-        em.persist(estudiante1);
-        em.persist(estudiante2);
+        // em.persist(estudiante1); // sin dao
+        daoJpa.insert(estudiante1);
+        daoJpa.insert(estudiante2);
+
 
         em.getTransaction().commit();
 
