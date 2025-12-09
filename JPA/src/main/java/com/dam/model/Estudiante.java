@@ -2,6 +2,9 @@ package com.dam.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class Estudiante {
 
@@ -16,6 +19,14 @@ public class Estudiante {
 
     @Column(unique = true)
     private String email;
+
+    @OneToMany(
+            mappedBy = "estudiante", // nombre del atributo que tiene la FK
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
+    private List<Credential> credenciales = new ArrayList<>();
 
     // necesario para Hibernate
     public Estudiante() {
@@ -62,6 +73,25 @@ public class Estudiante {
     public String getApellido() { return apellido; }
 
     public void setApellido(String apellido) { this.apellido = apellido; }
+
+    public List<Credential> getCredenciales() {
+        return credenciales;
+    }
+
+    public void setCredenciales(List<Credential> credenciales) {
+        this.credenciales = credenciales;
+    }
+
+    // Helper methods
+    public void addCredential(Credential credential){
+        credenciales.add(credential);
+        credential.setEstudiante(this); // esto mantiene consistencia entre las entidades relacionadas
+    }
+
+    public void removeCredential(Credential credential){
+        credenciales.remove(credential);
+        credential.setEstudiante(null); // si borramos credencial, quitamos su relacion con el Estudiante
+    }
 
     @Override
     public String toString() {
