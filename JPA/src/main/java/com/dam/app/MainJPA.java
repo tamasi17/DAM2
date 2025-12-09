@@ -1,8 +1,9 @@
 package com.dam;
 
+import com.dam.config.JPAUtil;
+import com.dam.model.Estudiante;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 
 public class MainJPA {
 
