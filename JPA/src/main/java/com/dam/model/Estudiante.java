@@ -1,6 +1,7 @@
 package com.dam.model;
 
 import jakarta.persistence.*;
+import org.hibernate.engine.internal.Cascade;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,14 @@ public class Estudiante {
 
     @Column(unique = true)
     private String email;
+
+    @JoinColumn(name = "id_expediente") // desde estudiante haremos getExpediente()
+    @OneToOne(
+            fetch = FetchType.LAZY,
+            orphanRemoval = true,
+            cascade = CascadeType.ALL
+    )
+    private Expediente expediente;
 
     @OneToMany(
             mappedBy = "estudiante", // nombre del atributo que tiene la FK
@@ -66,9 +75,6 @@ public class Estudiante {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getApellido() { return apellido; }
 
@@ -80,6 +86,14 @@ public class Estudiante {
 
     public void setCredenciales(List<Credential> credenciales) {
         this.credenciales = credenciales;
+    }
+
+    public Expediente getExpediente() {
+        return expediente;
+    }
+
+    public void setExpediente(Expediente expediente) {
+        this.expediente = expediente;
     }
 
     // Helper methods
