@@ -29,6 +29,16 @@ public class Estudiante {
     )
     private Expediente expediente;
 
+
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name = "estudiantes_asignaturas",
+            joinColumns = @JoinColumn(name="id_estudiante"),
+            inverseJoinColumns = @JoinColumn(name ="id_asignatura")
+
+    )
+    private List<Asignatura> asignaturas = new ArrayList<>();
+
     @OneToMany(
             mappedBy = "estudiante", // nombre del atributo que tiene la FK
             cascade = CascadeType.ALL,
@@ -88,6 +98,14 @@ public class Estudiante {
         this.credenciales = credenciales;
     }
 
+    public List<Asignatura> getAsignaturas() {
+        return asignaturas;
+    }
+
+    public void setAsignaturas(List<Asignatura> asignaturas) {
+        this.asignaturas = asignaturas;
+    }
+
     public Expediente getExpediente() {
         return expediente;
     }
@@ -105,6 +123,16 @@ public class Estudiante {
     public void removeCredential(Credential credential){
         credenciales.remove(credential);
         credential.setEstudiante(null); // si borramos credencial, quitamos su relacion con el Estudiante
+    }
+
+    public void matricularse(Asignatura asignatura){
+        asignaturas.add(asignatura);
+        asignatura.getEstudiantes().add(this);
+    }
+
+    public void desmatricularse(Asignatura asignatura){
+        asignaturas.remove(asignatura);
+        asignatura.getEstudiantes().remove(this);
     }
 
     @Override

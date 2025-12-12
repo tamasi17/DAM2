@@ -2,6 +2,7 @@ package com.dam.app;
 
 import com.dam.config.JPAUtil;
 import com.dam.dao.EstudianteJPA;
+import com.dam.model.Asignatura;
 import com.dam.model.Credential;
 import com.dam.model.Estudiante;
 import com.dam.model.Expediente;
@@ -19,7 +20,7 @@ public class MainJPA {
         EstudianteJPA daoJpa = new EstudianteJPA(em);
 
         Estudiante estudiante1 = new Estudiante("Zibre", "Quiñon", "zibre@zib.com", "2DAM");
-        Estudiante estudiante2 = new Estudiante("Anne", "Atochero", "atochero@ane.com", "1DAM");
+        Estudiante estudiante2 = new Estudiante("Ane", "Atochero", "atochero@ane.com", "1DAM");
 
         try {
 
@@ -33,10 +34,12 @@ public class MainJPA {
             // Creamos credenciales
             Credential gitHub = new Credential("GitHub", "ZibreGithub");
             Credential notion = new Credential("Notion", "ZibreNotion");
+            Credential notion2 = new Credential("Notion", "AneNotion");
 
             // Asignamos credenciales
             estudiante1.addCredential(gitHub);
             estudiante1.addCredential(notion);
+            estudiante2.addCredential(notion2);
 
             // Creamos expedientes
             Expediente exp1 = new Expediente(false, 8.9);
@@ -46,13 +49,23 @@ public class MainJPA {
             estudiante1.setExpediente(exp1);
             estudiante2.setExpediente(exp2);
 
+            // Creamos asignaturas
+            Asignatura psp = new Asignatura("PSP",2,7);
+            Asignatura add = new Asignatura("Acceso a Datos",2,8);
+
+            // Asignamos asignaturas
+            estudiante1.matricularse(psp);
+            estudiante1.matricularse(add);
+            estudiante2.matricularse(psp);
 
             // COMMIT !!!
             em.getTransaction().commit();
 
 
-            System.out.println("Estudiante 1: " + estudiante1.getId() + " - " + estudiante1.getCredenciales());
-            System.out.println("Estudiante 2: " + estudiante1.getId() + " - " + estudiante2.getCredenciales());
+            System.out.println("Estudiante: " + estudiante1.getId() + " \n " + estudiante1.getCredenciales()
+                    + "\n"+ estudiante1.getExpediente() + "\n"+ estudiante1.getAsignaturas().toString());
+            System.out.println("Estudiante: " + estudiante2.getId() + " \n " + estudiante2.getCredenciales()
+                    + "\n"+ estudiante2.getExpediente() + "\n"+ estudiante2.getAsignaturas().toString());
 
         } catch (Exception e) {
             e.printStackTrace();
